@@ -38,7 +38,7 @@ void main(List<String> args) async {
   } else if (fullArgumentString.contains("init")) {
     print("--------------");
     print("DevxInit");
-    print("This command will create a project with devx app templates");
+    print("This command will create a project with yo app templates");
     print("--------------");
     ProjectGenerator.create();
   } else if (fullArgumentString.contains("generate_icon")) {
@@ -75,19 +75,19 @@ void main(List<String> args) async {
     print("by Codekaze");
     print("--------------");
     print("Init Project");
-    print("code: devx init");
+    print("code: yo init");
     print("--------------");
     print("Create Module");
-    print("code: devx module create [module_name]");
-    print("example: devx module create product_list");
-    print("example: devx module create product/product_list");
+    print("code: yo module create [module_name]");
+    print("example: yo module create product_list");
+    print("example: yo module create product/product_list");
     print("--------------");
     print("Generate Icon");
     print("1. Update icon files in assets/icon/icon.png");
-    print("2. Run > devx generate_icon");
+    print("2. Run > yo generate_icon");
     print("--------------");
     print("Remove Unused Import");
-    print("1. Run > devx clean");
+    print("1. Run > yo clean");
     print("--------------");
   }
 }
