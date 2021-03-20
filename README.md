@@ -1,16 +1,16 @@
-### Install Yo Package
+## Install Yo Package
 ```
 flutter pub global activate yo
 ```
 
 
-#### Create Yo Project
+## Create Yo Project
 ```
 yo init
 ```
 
 
-#### Create Module
+## Create Module
 ```
 yo module create [module_name]
 ```
@@ -25,20 +25,20 @@ yo module create product/product_list
 yo module create product/product_form
 ```
 
-#### Generate Icon
+## Generate Icon
 1. Update icon file in assets/icon/icon.png
 2. Run this command:
 ```
 yo generate_icon
 ```
 
-#### Remove Unused Import
+## Remove Unused Import
 ```
 yo clean
 ```
 
 
-#### Generate core.dart File
+## Generate core.dart File
 ```
 yo core
 ```
