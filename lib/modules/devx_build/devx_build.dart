@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:devx/resources/session/package_info.dart';
-import 'package:devx/shared/helper/exec/exec.dart';
+import 'package:yo/resources/session/package_info.dart';
+import 'package:yo/shared/helper/exec/exec.dart';
 
 class WifeBuild {
   static run() async {

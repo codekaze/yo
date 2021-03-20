@@ -1,4 +1,4 @@
-import 'package:devx/shared/helper/exec/exec.dart';
+import 'package:yo/shared/helper/exec/exec.dart';
 
 class IconGenerator {
   static create() async {

@@ -1,4 +1,4 @@
-import 'package:devx/shared/helper/name_parser/name_parser.dart';
+import 'package:yo/shared/helper/name_parser/name_parser.dart';
 
 class ModuleViewTemplate {
   static get(ParsedName m) {

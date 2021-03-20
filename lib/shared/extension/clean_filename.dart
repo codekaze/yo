@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:devx/resources/session/package_info.dart';
+import 'package:yo/resources/session/package_info.dart';
 
 extension CleanFileNameExtension on String {
   String getFileName() {

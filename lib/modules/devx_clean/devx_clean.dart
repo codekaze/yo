@@ -1,5 +1,5 @@
-import 'package:devx/shared/helper/dir/dir.dart';
-import 'package:devx/shared/helper/exec/exec.dart';
+import 'package:yo/shared/helper/dir/dir.dart';
+import 'package:yo/shared/helper/exec/exec.dart';
 
 class WifeClean {
   static void run() {
