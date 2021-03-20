@@ -3,7 +3,14 @@
 flutter pub global activate yo
 ```
 
+- Add this to Your PATH
+```
+[YOUR_FLUTTER_PARENT_DIRECTORY]\flutter\.pub-cache\bin
+[YOUR_FLUTTER_PARENT_DIRECTORY]\flutter\bin\cache\dart-sdk\bin
+[YOUR_FLUTTER_PARENT_DIRECTORY]\flutter\bin
+```
 
+```
 ## Create Yo Project
 ```
 yo init
