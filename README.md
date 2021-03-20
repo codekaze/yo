@@ -10,7 +10,6 @@ flutter pub global activate yo
 [YOUR_FLUTTER_PARENT_DIRECTORY]\flutter\bin
 ```
 
-```
 ## Create Yo Project
 ```
 yo init
