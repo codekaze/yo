@@ -3,8 +3,8 @@ import 'package:devx/modules/core_generator/core_generator.dart';
 import 'package:devx/modules/icon_generator/icon_generator.dart';
 import 'package:devx/modules/module_generator/module_generator.dart';
 import 'package:devx/modules/project_generator/project_generator.dart';
-import 'package:devx/modules/wife_build/wife_build.dart';
-import 'package:devx/modules/wife_clean/wife_clean.dart';
+import 'package:devx/modules/devx_build/devx_build.dart';
+import 'package:devx/modules/devx_clean/devx_clean.dart';
 import 'package:devx/resources/session/package_info.dart';
 
 void main(List<String> args) async {
@@ -37,8 +37,8 @@ void main(List<String> args) async {
     }
   } else if (fullArgumentString.contains("init")) {
     print("--------------");
-    print("Wife Init");
-    print("This command will create a project with wife app templates");
+    print("DevxInit");
+    print("This command will create a project with devx app templates");
     print("--------------");
     ProjectGenerator.create();
   } else if (fullArgumentString.contains("generate_icon")) {
@@ -49,13 +49,13 @@ void main(List<String> args) async {
     IconGenerator.create();
   } else if (fullArgumentString.contains("build")) {
     print("--------------");
-    print("Wife Build");
+    print("DevxBuild");
     print("This command will build apk and upload to Google Drive");
     print("--------------");
     WifeBuild.run();
   } else if (fullArgumentString.contains("clean")) {
     print("--------------");
-    print("Wife Clean");
+    print("DevxClean");
     print("This command will remove unused imports");
     print("--------------");
     WifeClean.run();
@@ -63,7 +63,7 @@ void main(List<String> args) async {
   //Under Development Feature
   else if (fullArgumentString.contains("core")) {
     print("--------------");
-    print("Wife Core");
+    print("DevxCore");
     print("This command will generate core file");
     print("--------------");
     CoreGenerator.run();
@@ -71,23 +71,23 @@ void main(List<String> args) async {
   //
   else {
     print("--------------");
-    print("Wife Beta");
+    print("DevxBeta");
     print("by Codekaze");
     print("--------------");
     print("Init Project");
-    print("code: wife init");
+    print("code: devx init");
     print("--------------");
     print("Create Module");
-    print("code: wife module create [module_name]");
-    print("example: wife module create product_list");
-    print("example: wife module create product/product_list");
+    print("code: devx module create [module_name]");
+    print("example: devx module create product_list");
+    print("example: devx module create product/product_list");
     print("--------------");
     print("Generate Icon");
     print("1. Update icon files in assets/icon/icon.png");
-    print("2. Run > wife generate_icon");
+    print("2. Run > devx generate_icon");
     print("--------------");
     print("Remove Unused Import");
-    print("1. Run > wife clean");
+    print("1. Run > devx clean");
     print("--------------");
   }
 }
