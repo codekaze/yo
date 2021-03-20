@@ -1,11 +1,11 @@
 import "dart:io";
-import 'package:wife/modules/core_generator/core_generator.dart';
-import 'package:wife/modules/icon_generator/icon_generator.dart';
-import 'package:wife/modules/module_generator/module_generator.dart';
-import 'package:wife/modules/project_generator/project_generator.dart';
-import 'package:wife/modules/wife_build/wife_build.dart';
-import 'package:wife/modules/wife_clean/wife_clean.dart';
-import 'package:wife/resources/session/package_info.dart';
+import 'package:devx/modules/core_generator/core_generator.dart';
+import 'package:devx/modules/icon_generator/icon_generator.dart';
+import 'package:devx/modules/module_generator/module_generator.dart';
+import 'package:devx/modules/project_generator/project_generator.dart';
+import 'package:devx/modules/wife_build/wife_build.dart';
+import 'package:devx/modules/wife_clean/wife_clean.dart';
+import 'package:devx/resources/session/package_info.dart';
 
 void main(List<String> args) async {
   var pubSpecFile = await File("./pubspec.yaml");

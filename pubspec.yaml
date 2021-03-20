@@ -1,7 +1,7 @@
-name: wife
+name: devx
 version: 0.0.40
-homepage: https://github.com/codekaze/wife
-description: ComingSoon
+homepage: https://github.com/codekaze/codekaze_cli
+description: ---
 environment: 
   sdk: '>=2.8.1 <3.0.0'
 dependencies: 
@@ -12,7 +12,7 @@ dev_dependencies:
   pedantic: ^1.9.0
   test: ^1.14.4
 executables: 
-  wife: 
+  ckz: 
 analyzer: 
   exclude: 
     - assets/**

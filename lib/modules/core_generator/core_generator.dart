@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:wife/core.dart';
+import 'package:devx/core.dart';
 import 'common_package_exporter.dart';
 
 class CoreGenerator {

@@ -1,4 +1,4 @@
-import 'package:wife/shared/helper/name_parser/name_parser.dart';
+import 'package:devx/shared/helper/name_parser/name_parser.dart';
 
 class ModuleControllerTemplate {
   static get(ParsedName m) {

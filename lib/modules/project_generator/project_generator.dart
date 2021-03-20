@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:wife/shared/helper/exec/exec.dart';
+import 'package:devx/shared/helper/exec/exec.dart';
 
 class ProjectGenerator {
   static create() async {
@@ -61,7 +61,7 @@ class ProjectGenerator {
     // exec('del /s /q /f .git');
     // exec('del /s /q /f .git');
     // exec('del /s /q /f *');
-    exec('git clone https://github.com/codekaze/wife_app .');
+    exec('git clone https://github.com/codekaze/codekaze_app .');
 
     // print(res);
     // exec('del /s /q /f .git');
@@ -101,7 +101,7 @@ class ProjectGenerator {
     files.forEach((filePath) {
       File file = File(filePath);
       var content = file.readAsStringSync();
-      content = content.replaceAll("com.example.wife_app", packageName);
+      content = content.replaceAll("com.example.codekaze_app", packageName);
       file.writeAsStringSync(content);
     });
   }
@@ -114,7 +114,7 @@ class ProjectGenerator {
     files.forEach((filePath) {
       File file = File(filePath);
       var content = file.readAsStringSync();
-      content = content.replaceAll("Wife App", applicationName);
+      content = content.replaceAll("Codekaze App", applicationName);
       file.writeAsStringSync(content);
     });
   }

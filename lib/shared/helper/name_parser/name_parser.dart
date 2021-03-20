@@ -1,4 +1,4 @@
-import 'package:wife/resources/session/package_info.dart';
+import 'package:devx/resources/session/package_info.dart';
 
 class ModulePath {
   String moduleDir;
