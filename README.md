@@ -1,1 +1,1 @@
-[DEVELOPMENT STOPPED]
+flutter pub global activate yo
