@@ -61,7 +61,7 @@ class ProjectGenerator {
     // exec('del /s /q /f .git');
     // exec('del /s /q /f .git');
     // exec('del /s /q /f *');
-    exec('git clone https://github.com/flutterlabz/wife_app .');
+    exec('git clone https://github.com/codekaze/wife_app .');
 
     // print(res);
     // exec('del /s /q /f .git');

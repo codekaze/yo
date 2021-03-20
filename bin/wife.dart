@@ -72,7 +72,7 @@ void main(List<String> args) async {
   else {
     print("--------------");
     print("Wife Beta");
-    print("by Flutterlabz");
+    print("by Codekaze");
     print("--------------");
     print("Init Project");
     print("code: wife init");

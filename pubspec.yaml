@@ -1,6 +1,6 @@
 name: wife
 version: 0.0.37
-homepage: https://github.com/flutterlabz/wife
+homepage: https://github.com/codekaze/wife
 description: ComingSoon
 environment: 
   sdk: '>=2.8.1 <3.0.0'
