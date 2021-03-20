@@ -1,5 +1,6 @@
 import "dart:io";
 import 'package:yo/modules/core_generator/core_generator.dart';
+import 'package:yo/modules/git_helper/git_helper.dart';
 import 'package:yo/modules/icon_generator/icon_generator.dart';
 import 'package:yo/modules/module_generator/module_generator.dart';
 import 'package:yo/modules/project_generator/project_generator.dart';
@@ -67,6 +68,12 @@ void main(List<String> args) async {
     print("This command will generate core file");
     print("--------------");
     CoreGenerator.run();
+  } else if (fullArgumentString.contains("push")) {
+    print("--------------");
+    print("DevxCore");
+    print("This command will do a simple push with your git");
+    print("--------------");
+    GitHelper.simplePush();
   }
   //
   else {
