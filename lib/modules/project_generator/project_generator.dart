@@ -93,8 +93,8 @@ class ProjectGenerator {
       "android/app/build.gradle",
       "android/app/src/debug/AndroidManifest.xml",
       "android/app/src/main/AndroidManifest.xml",
-      "android/app/src/main/kotlin/com/example/demo_app/MainActivity.kt",
-      "android/app/src/main/kotlin/com/example/demo_app/MainActivity.kt",
+      "android/app/src/main/kotlin/com/example/codekaze_app/MainActivity.kt",
+      "android/app/src/main/kotlin/com/example/codekaze_app/MainActivity.kt",
       "android/app/src/profile/AndroidManifest.xml",
     ];
 
