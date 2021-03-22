@@ -23,8 +23,11 @@ class ProjectGenerator {
     );
 
     var packageName = getInput(
-      message: "2. Package Name:",
+      message: "2. Package Name: (example: com.example.my_awesome_app)",
     );
+
+    var arr = packageName.split(".");
+    var shortPackageName = arr[arr.length - 1];
 
     writeSpace();
     writeSeparator();
@@ -32,6 +35,7 @@ class ProjectGenerator {
     print("Confirm:");
     print("Applicaton Name : ${applicationName}");
     print("Package Name : ${packageName}");
+    print("Short Package Name : ${shortPackageName}");
     writeSeparator();
     writeSeparator();
     print("Create DevxProject? (Y/N)");
@@ -75,6 +79,7 @@ class ProjectGenerator {
     // print(filePath);
 
     await updatePackageName(packageName);
+    await updateShortPackageName(shortPackageName);
     await updateApplicationName(applicationName);
 
     var p = File("./pubspec.yaml");
@@ -104,6 +109,25 @@ class ProjectGenerator {
       content = content.replaceAll("com.example.codekaze_app", packageName);
       file.writeAsStringSync(content);
     });
+  }
+
+  static updateShortPackageName(shortPackageName) async {
+    Directory dir = Directory('lib/');
+    dir.list(recursive: true).forEach((f) {
+      if (f.path.endsWith(".dart")) {
+        File file = File(f.path);
+        var content = file.readAsStringSync();
+
+        content =
+            content.replaceAll("package:demo_app", "package:$shortPackageName");
+        file.writeAsStringSync(content);
+      }
+    });
+
+    File file = File("pubspec.yaml");
+    var content = file.readAsStringSync();
+    content = content.replaceAll("name: demo_app", "name: $shortPackageName");
+    file.writeAsStringSync(content);
   }
 
   static updateApplicationName(applicationName) async {
