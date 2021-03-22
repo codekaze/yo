@@ -1,7 +1,16 @@
 import 'dart:convert';
 import 'dart:io';
 
-dynamic exec(String cmd) {
+dynamic execr(String cmd) {
+  print("#: $cmd");
+  var res = exec(cmd, displayResult: true);
+  print(res);
+}
+
+dynamic exec(
+  String cmd, {
+  bool displayResult = false,
+}) {
   var res = Process.runSync(
     "$cmd",
     [],
