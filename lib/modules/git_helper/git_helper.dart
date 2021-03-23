@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:intl/intl.dart';
 import 'package:yo/shared/helper/exec/exec.dart';
 
@@ -24,6 +26,64 @@ class GitHelper {
     execr('git add .');
     execr('git commit -m "."');
     execr('git push --set-upstream origin master --force');
+  }
+
+  // its > git remote add origin <url>
+  static clone(String fullArgumentString) async {
+    var args = fullArgumentString.split(" ");
+    var githubUrl = args[1];
+    var parameter;
+    if (args.length >= 3) {
+      parameter = args[2];
+    }
+
+    githubUrl = convertToSshUrl(githubUrl);
+
+    var arr = githubUrl.split("/");
+    var repoName = arr[arr.length - 1];
+    if (repoName.endsWith(".git")) {
+      repoName = repoName.replaceAll(".git", "");
+    }
+
+    var cloneCommand = "git clone $githubUrl";
+    if (parameter != null) {
+      cloneCommand = "git clone $githubUrl .";
+    }
+
+    var changeDirectoryCommand = "";
+    if (parameter == null) {
+      changeDirectoryCommand = 'cd $repoName';
+    }
+
+    var preCommand = "";
+    if (parameter != null) {
+      preCommand = "rm -rf * .git .vscode";
+
+      var nah = Directory.current.listSync();
+      if (nah.length > 2) {
+        writeSeparator();
+        writeSeparator();
+        print("Your Directory is not Empty, this Command is Very Dangerous");
+        print("This command will delete all directory and files");
+        print(
+            "No Backup, please dont run this command on your project directory");
+        writeSeparator();
+        return;
+      }
+    }
+
+    execLines(
+      [
+        preCommand,
+        cloneCommand,
+        changeDirectoryCommand,
+        "git init",
+        'git config user.name "$userName"',
+        'git config user.email "$userEmail"',
+        'dir',
+        'echo %cd%',
+      ],
+    );
   }
 
   static convertToSshUrl(String url) {

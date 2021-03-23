@@ -80,6 +80,12 @@ void main(List<String> args) async {
     print("This command will do a simple push with your git");
     print("--------------");
     GitHelper.add(fullArgumentString);
+  } else if (fullArgumentString.contains("clone")) {
+    print("--------------");
+    print("DevxCore");
+    print("This command will do a simple clone with your git");
+    print("--------------");
+    GitHelper.clone(fullArgumentString);
   }
   //
   else {
