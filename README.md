@@ -1,4 +1,4 @@
-## Install Yo Package
+## How to Install Yo
 ```
 flutter pub global activate yo
 ```
@@ -10,7 +10,7 @@ flutter pub global activate yo
 [YOUR_FLUTTER_PARENT_DIRECTORY]\flutter\bin
 ```
 
-- Another option to Install Yo
+- Another option is to use YoInstaller.exe
 ```
 Download YoInstaller.exe and click the Install button.
 ```
