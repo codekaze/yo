@@ -54,15 +54,3 @@ yo clean
 ```
 yo core
 ```
-
-## Simple Command to Push to Github
-```
-yo push
-```
-
-its equal to:
-```
-git add .
-git commit -m "."
-git push
-```
