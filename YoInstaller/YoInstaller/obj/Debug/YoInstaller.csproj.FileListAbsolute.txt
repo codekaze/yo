@@ -1,0 +1,10 @@
+C:\Users\user\Documents\C# Project\YoInstaller\YoInstaller\bin\Debug\YoInstaller.exe.config
+C:\Users\user\Documents\C# Project\YoInstaller\YoInstaller\bin\Debug\YoInstaller.exe
+C:\Users\user\Documents\C# Project\YoInstaller\YoInstaller\bin\Debug\YoInstaller.pdb
+C:\Users\user\Documents\C# Project\YoInstaller\YoInstaller\obj\Debug\YoInstaller.csprojAssemblyReference.cache
+C:\Users\user\Documents\C# Project\YoInstaller\YoInstaller\obj\Debug\YoInstaller.Form1.resources
+C:\Users\user\Documents\C# Project\YoInstaller\YoInstaller\obj\Debug\YoInstaller.Properties.Resources.resources
+C:\Users\user\Documents\C# Project\YoInstaller\YoInstaller\obj\Debug\YoInstaller.csproj.GenerateResource.cache
+C:\Users\user\Documents\C# Project\YoInstaller\YoInstaller\obj\Debug\YoInstaller.csproj.CoreCompileInputs.cache
+C:\Users\user\Documents\C# Project\YoInstaller\YoInstaller\obj\Debug\YoInstaller.exe
+C:\Users\user\Documents\C# Project\YoInstaller\YoInstaller\obj\Debug\YoInstaller.pdb
