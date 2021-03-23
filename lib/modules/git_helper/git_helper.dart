@@ -9,9 +9,30 @@ class GitHelper {
 
   static simplePush() {
     var dateString = DateFormat('EEE, MMM d, ' 'yy').format(DateTime.now());
-    var res = exec('git add . && git commit -m "." && git push');
+
+    var res = exec("git config user.name");
     print(res);
-    print(dateString);
+
+    var repo = exec("git remote -v");
+    print(repo);
+
+    var _userName = "flutterlabz";
+    var _email = "flutterlabz@gmail.com";
+
+    if (repo.toString().contains("git@personal")) {
+      _userName = "codekaze";
+      _email = "codekaze.id@gmail.com";
+    }
+
+    execLines(
+      [
+        'git config user.name "$_userName"',
+        'git config user.email "$_email"',
+        'git add .',
+        'git commit -m "$dateString"',
+        'git push',
+      ],
+    );
   }
 
   // its > git remote add origin <url>
