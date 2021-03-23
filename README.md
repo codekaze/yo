@@ -14,7 +14,7 @@ flutter pub global activate yo
 ```
 Download YoInstaller.exe and click the Install button.
 ```
-[Download Yo-Installer]: https://github.com/codekaze/yo_installer/raw/master/YoInstaller/bin/Debug/YoInstaller.exe
+[Download Yo-Installer](https://github.com/codekaze/yo_installer/raw/master/YoInstaller/bin/Debug/YoInstaller.exe)
 
 ## Create Yo Project
 ```
