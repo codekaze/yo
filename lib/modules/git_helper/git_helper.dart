@@ -8,7 +8,7 @@ class GitHelper {
   static String userEmail = "";
 
   static simplePush() {
-    var dateString = DateFormat('EEE, MMM d, ' 'yy').format(DateTime.now());
+    var dateString = DateFormat('EEE, MMM d, kk:mm:ss').format(DateTime.now());
 
     var res = exec("git config user.name");
     print(res);
