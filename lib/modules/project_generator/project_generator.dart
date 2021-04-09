@@ -80,6 +80,7 @@ class ProjectGenerator {
 
     await updatePackageName(packageName);
     await updateShortPackageName(shortPackageName);
+    await replaceDefaultAppName(shortPackageName);
     await updateApplicationName(applicationName);
 
     var p = File("./pubspec.yaml");
@@ -128,6 +129,17 @@ class ProjectGenerator {
     var content = file.readAsStringSync();
     content = content.replaceAll("name: demo_app", "name: $shortPackageName");
     file.writeAsStringSync(content);
+  }
+
+  static replaceDefaultAppName(shortPackageName) async {
+    Directory dir = Directory('./');
+    dir.list(recursive: true).forEach((f) {
+      File file = File(f.path);
+      var content = file.readAsStringSync();
+
+      content = content.replaceAll("codekaze_app", "$shortPackageName");
+      file.writeAsStringSync(content);
+    });
   }
 
   static updateApplicationName(applicationName) async {
