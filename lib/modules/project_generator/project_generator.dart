@@ -80,7 +80,7 @@ class ProjectGenerator {
 
     await updatePackageName(packageName);
     await updateShortPackageName(shortPackageName);
-    await replaceDefaultAppName(shortPackageName);
+    await replaceDefaultAppName(shortPackageName, applicationName);
     await cleanReadme();
     await updateApplicationName(applicationName);
 
@@ -132,7 +132,7 @@ class ProjectGenerator {
     file.writeAsStringSync(content);
   }
 
-  static replaceDefaultAppName(shortPackageName) async {
+  static replaceDefaultAppName(shortPackageName, applicationName) async {
     List dirs = [
       "android/",
       "ios/",
@@ -152,10 +152,12 @@ class ProjectGenerator {
             file.path.endsWith(".json") ||
             file.path.endsWith(".txt") ||
             file.path.endsWith(".cpp") ||
-            file.path.endsWith(".rc")) {
+            file.path.endsWith(".rc") ||
+            file.path.endsWith(".pbxproj")) {
           var content = file.readAsStringSync();
 
           content = content.replaceAll("codekaze_app", "$shortPackageName");
+          content = content.replaceAll("codekazeApp", "${applicationName}");
           file.writeAsStringSync(content);
         }
       });
