@@ -64,25 +64,21 @@ void main(List<String> args) async {
   //Under Development Feature
   else if (fullArgumentString.contains("core")) {
     print("--------------");
-    print("DevxCore");
     print("This command will generate core file");
     print("--------------");
     CoreGenerator.run();
   } else if (fullArgumentString.contains("push")) {
     print("--------------");
-    print("DevxCore");
     print("This command will do a simple push with your git");
     print("--------------");
     GitHelper.simplePush();
   } else if (fullArgumentString.contains("add")) {
     print("--------------");
-    print("DevxCore");
     print("This command will do a simple push with your git");
     print("--------------");
     GitHelper.add(fullArgumentString);
   } else if (fullArgumentString.contains("clone")) {
     print("--------------");
-    print("DevxCore");
     print("This command will do a simple clone with your git");
     print("--------------");
     GitHelper.clone(fullArgumentString);
@@ -90,7 +86,7 @@ void main(List<String> args) async {
   //
   else {
     print("--------------");
-    print("DevxBeta");
+    print("Yo");
     print("by Codekaze");
     print("--------------");
     print("Init Project");
