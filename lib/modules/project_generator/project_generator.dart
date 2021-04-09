@@ -132,13 +132,22 @@ class ProjectGenerator {
   }
 
   static replaceDefaultAppName(shortPackageName) async {
-    Directory dir = Directory('./');
-    dir.list(recursive: true).forEach((f) {
-      File file = File(f.path);
-      var content = file.readAsStringSync();
+    List dirs = [
+      "android/",
+      "ios/",
+      "windows/",
+      "web/",
+    ];
 
-      content = content.replaceAll("codekaze_app", "$shortPackageName");
-      file.writeAsStringSync(content);
+    dirs.forEach((dirName) {
+      Directory dir = Directory('$dirName');
+      dir.list(recursive: true).forEach((f) {
+        File file = File(f.path);
+        var content = file.readAsStringSync();
+
+        content = content.replaceAll("codekaze_app", "$shortPackageName");
+        file.writeAsStringSync(content);
+      });
     });
   }
 
