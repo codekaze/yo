@@ -155,7 +155,6 @@ class ProjectGenerator {
             file.path.endsWith(".rc") ||
             file.path.endsWith(".pbxproj")) {
           var content = file.readAsStringSync();
-
           content = content.replaceAll("codekaze_app", "$shortPackageName");
           content = content.replaceAll("codekazeApp", "${applicationName}");
           file.writeAsStringSync(content);
