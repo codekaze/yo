@@ -38,7 +38,7 @@ class ProjectGenerator {
     print("Short Package Name : ${shortPackageName}");
     writeSeparator();
     writeSeparator();
-    print("Create DevxProject? (Y/N)");
+    print("Create YoProject? (Y/N)");
     var confirm = getInput();
 
     if (confirm.toString().toLowerCase() == "n") {
@@ -90,7 +90,7 @@ class ProjectGenerator {
     exec("git remote remove origin");
 
     writeSeparator();
-    print("DevxProject Created!");
+    print("YoProject Created!");
     writeSeparator();
   }
 
