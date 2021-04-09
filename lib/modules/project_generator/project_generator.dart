@@ -80,9 +80,8 @@ class ProjectGenerator {
 
     await updatePackageName(packageName);
     await updateShortPackageName(shortPackageName);
-    //TODO: replaceDefaultAppName shouldn't replace .png
-    //TODO: define file extension
-    // await replaceDefaultAppName(shortPackageName);
+    await replaceDefaultAppName(shortPackageName);
+    await cleanReadme();
     await updateApplicationName(applicationName);
 
     var p = File("./pubspec.yaml");
@@ -145,12 +144,27 @@ class ProjectGenerator {
       Directory dir = Directory('$dirName');
       dir.list(recursive: true).forEach((f) {
         File file = File(f.path);
-        var content = file.readAsStringSync();
+        if (file.path.endsWith(".gradle") ||
+            file.path.endsWith(".xml") ||
+            file.path.endsWith(".kt") ||
+            file.path.endsWith(".plist") ||
+            file.path.endsWith(".html") ||
+            file.path.endsWith(".json") ||
+            file.path.endsWith(".txt") ||
+            file.path.endsWith(".cpp") ||
+            file.path.endsWith(".rc")) {
+          var content = file.readAsStringSync();
 
-        content = content.replaceAll("codekaze_app", "$shortPackageName");
-        file.writeAsStringSync(content);
+          content = content.replaceAll("codekaze_app", "$shortPackageName");
+          file.writeAsStringSync(content);
+        }
       });
     });
+  }
+
+  static cleanReadme() {
+    File file = File("README.md");
+    file.writeAsStringSync("");
   }
 
   static updateApplicationName(applicationName) async {
