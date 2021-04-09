@@ -80,7 +80,9 @@ class ProjectGenerator {
 
     await updatePackageName(packageName);
     await updateShortPackageName(shortPackageName);
-    await replaceDefaultAppName(shortPackageName);
+    //TODO: replaceDefaultAppName shouldn't replace .png
+    //TODO: define file extension
+    // await replaceDefaultAppName(shortPackageName);
     await updateApplicationName(applicationName);
 
     var p = File("./pubspec.yaml");
