@@ -72,6 +72,11 @@ void main(List<String> args) async {
     print("This command will do a simple push with your git");
     print("--------------");
     GitHelper.simplePush();
+  } else if (fullArgumentString.contains("config")) {
+    print("--------------");
+    print("This command will show your current config");
+    print("--------------");
+    GitHelper.config();
   } else if (fullArgumentString.contains("add")) {
     print("--------------");
     print("This command will do a simple push with your git");

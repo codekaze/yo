@@ -18,55 +18,57 @@ class ModuleGenerator {
     await Template.create(
         m.path.controllerPath, ModuleControllerTemplate.get(m));
 
-    if (File("lib/xgenerated/generated_router.dart").existsSync()) {
-      await Template.appendCodeBeforeTag(
-        fileName: "lib/xgenerated/generated_router.dart",
-        tag: "//@EndOfImport",
-        code: m.viewImportScript,
-        validator: m.viewImportScript,
-        disableFormat: true,
-      );
-    }
+    //! [Deprecreated - Remove generated_router.dart Support]
+    // if (File("lib/xgenerated/generated_router.dart").existsSync()) {
+    //   await Template.appendCodeBeforeTag(
+    //     fileName: "lib/xgenerated/generated_router.dart",
+    //     tag: "//@EndOfImport",
+    //     code: m.viewImportScript,
+    //     validator: m.viewImportScript,
+    //     disableFormat: true,
+    //   );
+    // }
 
-    if (File("lib/xgenerated/generated_router.dart").existsSync()) {
-      await Template.appendCodeBeforeTag(
-        fileName: "lib/xgenerated/generated_router.dart",
-        tag: "//@EndOfRouterName",
-        code: '''
-        static const String ${m.variableName}View = '/module/${m.fileName}';
-      ''',
-        validator: "String ${m.variableName}View =",
-        disableFormat: true,
-      );
+    // if (File("lib/xgenerated/generated_router.dart").existsSync()) {
+    //   await Template.appendCodeBeforeTag(
+    //     fileName: "lib/xgenerated/generated_router.dart",
+    //     tag: "//@EndOfRouterName",
+    //     code: '''
+    //     static const String ${m.variableName}View = '/module/${m.fileName}';
+    //   ''',
+    //     validator: "String ${m.variableName}View =",
+    //     disableFormat: true,
+    //   );
 
-      await Template.appendCodeBeforeTag(
-        fileName: "lib/xgenerated/generated_router.dart",
-        tag: "//@EndOfRouterItem",
-        code: '''
-        RouteItem(
-          routeName: ${m.variableName}View,
-          layout: ${m.viewName}(),
-        ),
-      ''',
-        validator: "routeName: ${m.variableName}View",
-        disableFormat: true,
-        tabCount: 2,
-      );
+    //   await Template.appendCodeBeforeTag(
+    //     fileName: "lib/xgenerated/generated_router.dart",
+    //     tag: "//@EndOfRouterItem",
+    //     code: '''
+    //     RouteItem(
+    //       routeName: ${m.variableName}View,
+    //       layout: ${m.viewName}(),
+    //     ),
+    //   ''',
+    //     validator: "routeName: ${m.variableName}View",
+    //     disableFormat: true,
+    //     tabCount: 2,
+    //   );
 
-      await Template.format("lib/xgenerated/generated_router.dart");
+    // await Template.format("lib/xgenerated/generated_router.dart");
 
-      // await Template.appendCodeBeforeTag(
-      //   fileName: "lib/xgenerated/generated_sidebar_menu.dart",
-      //   tag: "//@EndOfMenuList",
-      //   code: '''
-      //   Menu(
-      //     title: '${m.title}',
-      //     icon: Icons.tune,
-      //     navRoute: GeneratedRouter.${m.variableName}View,
-      //   ),
-      // ''',
-      //   validator: "GeneratedRouter.${m.variableName}View",
-      // );
-    }
+    //! End of Deprecreated
+
+    // await Template.appendCodeBeforeTag(
+    //   fileName: "lib/xgenerated/generated_sidebar_menu.dart",
+    //   tag: "//@EndOfMenuList",
+    //   code: '''
+    //   Menu(
+    //     title: '${m.title}',
+    //     icon: Icons.tune,
+    //     navRoute: GeneratedRouter.${m.variableName}View,
+    //   ),
+    // ''',
+    //   validator: "GeneratedRouter.${m.variableName}View",
+    // );
   }
 }

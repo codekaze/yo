@@ -35,6 +35,30 @@ class GitHelper {
     );
   }
 
+  static config() {
+    var dateString = DateFormat('EEE, MMM d, kk:mm:ss').format(DateTime.now());
+
+    var res = exec("git config user.name");
+    print(res);
+
+    var repo = exec("git remote -v");
+    print(repo);
+
+    var _userName = "flutterlabz";
+    var _email = "flutterlabz@gmail.com";
+
+    var isPersonal = false;
+    if (repo.toString().contains("git@personal")) {
+      _userName = "codekaze";
+      _email = "codekaze.id@gmail.com";
+      isPersonal = true;
+    }
+
+    print("IS PERSONAL: $isPersonal");
+    print("username: $_userName");
+    print("email: $_email");
+  }
+
   // its > git remote add origin <url>
   static add(String fullArgumentString) async {
     var githubUrl = fullArgumentString.split(" ")[1];
