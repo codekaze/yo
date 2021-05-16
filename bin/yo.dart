@@ -109,5 +109,8 @@ void main(List<String> args) async {
     print("Remove Unused Import");
     print("1. Run > yo clean");
     print("--------------");
+    print("Import all files to core.dart");
+    print("1. Run > yo core");
+    print("--------------");
   }
 }
