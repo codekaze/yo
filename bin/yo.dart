@@ -1,5 +1,6 @@
 import "dart:io";
 import 'package:yo/modules/core_generator/core_generator.dart';
+import 'package:yo/modules/deploy/deploy.dart';
 import 'package:yo/modules/git_helper/git_helper.dart';
 import 'package:yo/modules/icon_generator/icon_generator.dart';
 import 'package:yo/modules/module_generator/module_generator.dart';
@@ -20,8 +21,9 @@ void main(List<String> args) async {
   // await createImport();
 
   var fullArgumentString = args.join(" ");
+  var command = args[0];
 
-  if (fullArgumentString.contains("module create")) {
+  if (command == "module") {
     if (hasPubspec) {
       await getPackageName();
 
@@ -36,25 +38,25 @@ void main(List<String> args) async {
     } else {
       print("This command only works on flutter projects directory");
     }
-  } else if (fullArgumentString.contains("init")) {
+  } else if (command == "init") {
     print("--------------");
     print("DevxInit");
     print("This command will create a project with yo app templates");
     print("--------------");
     ProjectGenerator.create();
-  } else if (fullArgumentString.contains("generate_icon")) {
+  } else if (command == "generate_icon") {
     print("--------------");
     print("Update Icon");
     print("This command will use icon on assets/icon/icon.png");
     print("--------------");
     IconGenerator.create();
-  } else if (fullArgumentString.contains("build")) {
+  } else if (command == "build") {
     print("--------------");
     print("DevxBuild");
     print("This command will build apk and upload to Google Drive");
     print("--------------");
     WifeBuild.run();
-  } else if (fullArgumentString.contains("clean")) {
+  } else if (command == "clean") {
     print("--------------");
     print("DevxClean");
     print("This command will remove unused imports");
@@ -62,31 +64,36 @@ void main(List<String> args) async {
     WifeClean.run();
   }
   //Under Development Feature
-  else if (fullArgumentString.contains("core")) {
+  else if (command == "core") {
     print("--------------");
     print("This command will generate core file");
     print("--------------");
     CoreGenerator.run();
-  } else if (fullArgumentString.contains("push")) {
+  } else if (command == "push") {
     print("--------------");
     print("This command will do a simple push with your git");
     print("--------------");
     GitHelper.simplePush();
-  } else if (fullArgumentString.contains("config")) {
+  } else if (command == "config") {
     print("--------------");
     print("This command will show your current config");
     print("--------------");
     GitHelper.config();
-  } else if (fullArgumentString.contains("add")) {
+  } else if (command == "add") {
     print("--------------");
     print("This command will do a simple push with your git");
     print("--------------");
     GitHelper.add(fullArgumentString);
-  } else if (fullArgumentString.contains("clone")) {
+  } else if (command == "clone") {
     print("--------------");
     print("This command will do a simple clone with your git");
     print("--------------");
     GitHelper.clone(fullArgumentString);
+  } else if (command == "deploy") {
+    print("--------------");
+    print("This command will do a deploy to website");
+    print("--------------");
+    Deploy.run(fullArgumentString);
   }
   //
   else {
