@@ -27,7 +27,7 @@ void main(List<String> args) async {
   }
 
   var cmdS =
-      "curl -o c:/yo/autocrop.exe https://github.com/codekaze/yo/raw/master/python-script/autocrop.exe";
+      "curl -C c:/yo/ https://github.com/codekaze/yo/raw/master/python-script/autocrop.exe";
 
   exec(cmdS);
   exec('SETX PATH "%PATH%;c:/yo"');
