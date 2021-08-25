@@ -20,6 +20,13 @@ void main(List<String> args) async {
   // await generateDefinedTemplate();
   // await createImport();
 
+  var dir = Directory("c:/yo");
+  if (!dir.existsSync()) {
+    dir.createSync();
+  }
+
+  if (args.isEmpty) return;
+
   var fullArgumentString = args.join(" ");
   var command = args[0];
 
