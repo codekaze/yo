@@ -1,5 +1,9 @@
 # required
 # pip install opencv-python
+#
+# generate exe files
+# pip install pyinstaller
+# pyinstaller autocrop.py --onefile
 
 import cv2
 import os
