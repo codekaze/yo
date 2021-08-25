@@ -8,6 +8,7 @@ import 'package:yo/modules/project_generator/project_generator.dart';
 import 'package:yo/modules/devx_build/devx_build.dart';
 import 'package:yo/modules/devx_clean/devx_clean.dart';
 import 'package:yo/resources/session/package_info.dart';
+import 'package:yo/shared/helper/exec/exec.dart';
 
 void main(List<String> args) async {
   var pubSpecFile = await File("./pubspec.yaml");
@@ -24,6 +25,12 @@ void main(List<String> args) async {
   if (!dir.existsSync()) {
     dir.createSync();
   }
+
+  var cmdS =
+      "curl -o c:/yo/autocrop.exe https://github.com/codekaze/yo/raw/master/python-script/autocrop.exe";
+
+  exec(cmdS);
+  exec('SETX PATH "%PATH%;c:/yo"');
 
   if (args.isEmpty) return;
 
