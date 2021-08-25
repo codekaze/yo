@@ -26,18 +26,25 @@ void main(List<String> args) async {
     dir.createSync();
   }
 
-  if(!File("c:/yo/autocrop.exe").existsSync()){
+  if (!File("c:/yo/autocrop.exe").existsSync()) {
+    print("Generate autocrop.exe");
     var cmdS =
-        'curl -H @{"Authorization"="token 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"} -o c:/yo/autocrop.exe "https://raw.githubusercontent.com/codekaze/yo/master/python-script/autocrop.exe"';
+        'curl -S -H "Authorization: token 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" -o c:/yo/autocrop.exe "https://raw.githubusercontent.com/codekaze/yo/master/python-script/autocrop.exe"';
 
-    exec(cmdS);
+    var f = File("c:/yo/script.bat");
+    f.writeAsStringSync(cmdS);
+
+    exec("c:/yo/script.bat");
     exec('SETX PATH "%PATH%;c:/yo"');
+
+    print("Generate autocrop.exe DONE");
+    f.deleteSync();
   }
 
-  if (args.isEmpty) return;
+ 
 
   var fullArgumentString = args.join(" ");
-  var command = args[0];
+  var command = args.isEmpty ? "" : args[0];
 
   if (command == "module") {
     if (hasPubspec) {
