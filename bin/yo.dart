@@ -26,11 +26,13 @@ void main(List<String> args) async {
     dir.createSync();
   }
 
-  var cmdS =
-      'curl -H @{"Authorization"="token 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"} -o c:/yo/autocrop.exe "https://raw.githubusercontent.com/codekaze/yo/master/python-script/autocrop.exe"';
+  if(!File("c:/yo/autocrop.exe").existsSync()){
+    var cmdS =
+        'curl -H @{"Authorization"="token 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"} -o c:/yo/autocrop.exe "https://raw.githubusercontent.com/codekaze/yo/master/python-script/autocrop.exe"';
 
-  exec(cmdS);
-  exec('SETX PATH "%PATH%;c:/yo"');
+    exec(cmdS);
+    exec('SETX PATH "%PATH%;c:/yo"');
+  }
 
   if (args.isEmpty) return;
 
