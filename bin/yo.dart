@@ -35,14 +35,28 @@ void main(List<String> args) async {
     f.writeAsStringSync(cmdS);
 
     exec("c:/yo/script.bat");
-    exec('SETX PATH "%PATH%;c:/yo"');
+    exec('SETX PATH "%PATH%;c:\yo"');
 
     print("Generate autocrop.exe DONE");
     f.deleteSync();
   }
 
- 
+  List mustRegisteredPath = [
+    "C:\\yo",
+    "C:\\flutter\\.pub-cache\\bin",
+    "C:\\flutter\\bin\\cache\\dart-sdk\\bin",
+    "C:\\flutter\\bin\\cache\\dart-sdk\\bin\\cache\\dart-sdk\\bin",
+  ];
 
+  var fullPath = "";
+  mustRegisteredPath.forEach((path) {
+    fullPath += ";$path";
+  });
+
+  execLines([
+    'SETX PATH "%PATH%$fullPath"',
+  ]);
+  
   var fullArgumentString = args.join(" ");
   var command = args.isEmpty ? "" : args[0];
 

@@ -14,6 +14,7 @@ dynamic execr(
     workingDirectory: workingDirectory,
   );
   print(res);
+  return res;
 }
 
 dynamic exec(
@@ -28,11 +29,14 @@ dynamic exec(
     writeSeparator();
     writeSeparator();
   }
+
   var res = Process.runSync(
     "$cmd",
     [],
     workingDirectory: null,
     runInShell: true,
+    
+
   );
   return res.stdout;
 }
@@ -47,8 +51,9 @@ dynamic execLines(List<String> commandList) {
   Directory("c:/yo_temp/").createSync();
   File ff = File(tempFilePath);
   ff.writeAsStringSync(commandList.join("\n"));
-  execr(tempFilePath);
+  var res = execr(tempFilePath);
   ff.deleteSync();
+  return res;
 }
 
 dynamic changeDirectory(String dirName) async {
