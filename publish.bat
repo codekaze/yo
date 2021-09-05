@@ -1,5 +1,4 @@
 @REM Required:
-@REM flutter pub global activate pubspec_version
 @REM flutter pub global activate cider
 
 cmd /c cider bump patch 
