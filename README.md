@@ -1,20 +1,14 @@
 ## How to Install Yo
 ```
 flutter pub global activate yo
+flutter pub global run yo
 ```
 
-- Add this to Your PATH
+Restart Command Prompt
+Run this command to test:
 ```
-[YOUR_FLUTTER_PARENT_DIRECTORY]\flutter\.pub-cache\bin
-[YOUR_FLUTTER_PARENT_DIRECTORY]\flutter\bin\cache\dart-sdk\bin
-[YOUR_FLUTTER_PARENT_DIRECTORY]\flutter\bin
-```
-
-- Another option is to use YoInstaller.exe
-```
-Download YoInstaller.exe and click the Install button.
-```
-[Download Yo-Installer](https://github.com/codekaze/yo_installer/raw/master/YoInstaller/bin/Debug/YoInstaller.exe)
+yo
+``` 
 
 ## Create Yo Project
 ```
