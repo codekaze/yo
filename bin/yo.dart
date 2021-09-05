@@ -46,6 +46,7 @@ void main(List<String> args) async {
     "C:\\flutter\\.pub-cache\\bin",
     "C:\\flutter\\bin\\cache\\dart-sdk\\bin",
     "C:\\flutter\\bin\\cache\\dart-sdk\\bin\\cache\\dart-sdk\\bin",
+    "C:\\Program Files\\Android\\Android Studio\\jre",
   ];
 
   var fullPath = "";
@@ -55,6 +56,10 @@ void main(List<String> args) async {
 
   execLines([
     'SETX PATH "%PATH%$fullPath"',
+  ]);
+
+  execLines([
+    'SETX JAVA_HOME "C:\\Program Files\\Android\\Android Studio\\jre"',
   ]);
   
   var fullArgumentString = args.join(" ");
