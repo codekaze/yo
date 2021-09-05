@@ -67,7 +67,7 @@ def generate_preview():
     im1 = cv2.imread('preview1.png')
     im2 = cv2.imread('1.png')
 
-    im2 = ndimage.rotate(im2, 25,expand=1)
+    im2 = ndimage.rotate(im2, 25)
 
     res = merge_image(im1,im2,200,100)
     cv2.imwrite("preview1x.png",res)
