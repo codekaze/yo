@@ -5,6 +5,8 @@
 # pip install pyinstaller
 # pyinstaller autocrop.py --onefile
 
+# python -m pip install --upgrade Pillow
+
 import cv2
 import os
 import imutils
