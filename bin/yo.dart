@@ -164,6 +164,7 @@ void main(List<String> args) async {
     await dir.list(recursive: true).forEach((f) async {
       if (f is File) {
         if (f.path.endsWith(".ini")) return;
+        if (f.path.endsWith(".gdoc")) return;
         var shortPath = f.path.split("\\UI8\\")[1];
         var myPath = "G:\\Shared drives\\MY SHARED DRIVE HHH\\" + shortPath;
 
