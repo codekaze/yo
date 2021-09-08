@@ -1,3 +1,4 @@
+import 'dart:developer';
 import "dart:io";
 import 'package:yo/core.dart';
 import 'package:yo/modules/core_generator/core_generator.dart';
@@ -62,10 +63,12 @@ void main(List<String> args) async {
   var currentPath = exec("echo %PATH%");
   fullPath = currentPath + fullPath;
   fullPath = fullPath.replaceAll(";;", ";");
+  fullPath = fullPath.replaceAll("//", "/");
+  fullPath = fullPath.replaceAll("\n", "");
   var arr = fullPath.split(";");
 
   arr = arr.toSet().toList();
-  fullPath = arr.join(";");
+  fullPath = arr.join(";").trim();
 
   execLines([
     'SETX PATH "$fullPath"',
