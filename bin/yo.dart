@@ -160,7 +160,8 @@ void main(List<String> args) async {
 
     Directory dir = Directory(
         "G:\\.shortcut-targets-by-id\\17SywrFvvouStFB5OBRKD8vt8zbS72Y4H\\UI8");
-    dir.list(recursive: true).forEach((f) async {
+    var count = 0;
+    await dir.list(recursive: true).forEach((f) async {
       if (f is File) {
         if (f.path.endsWith(".ini")) return;
         var shortPath = f.path.split("\\UI8\\")[1];
@@ -168,6 +169,7 @@ void main(List<String> args) async {
 
         if (!File(myPath).existsSync()) {
           print("This File not Exists: $myPath");
+          count++;
           File(f.path).copySync(myPath);
           return;
           // await Future.delayed(Duration(seconds: 1000));
@@ -176,6 +178,8 @@ void main(List<String> args) async {
         // G:\Shared drives\MY SHARED DRIVE HHH\UI8 Files(2018)
       }
     });
+
+    print("Count $count");
   }
   //
   else {
