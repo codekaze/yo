@@ -1,4 +1,5 @@
 import "dart:io";
+import 'package:yo/core.dart';
 import 'package:yo/modules/core_generator/core_generator.dart';
 import 'package:yo/modules/deploy/deploy.dart';
 import 'package:yo/modules/git_helper/git_helper.dart';
@@ -26,23 +27,24 @@ void main(List<String> args) async {
     dir.createSync();
   }
 
-  if (!File("c:/yo/autocrop.exe").existsSync()) {
-    print("Generate autocrop.exe");
-    var cmdS =
-        'curl -S -H "Authorization: token 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" -o c:/yo/autocrop.exe "https://raw.githubusercontent.com/codekaze/yo/master/python-script/autocrop.exe"';
+  // if (!File("c:/yo/autocrop.exe").existsSync()) {
+  //   print("Generate autocrop.exe");
+  //   var cmdS =
+  //       'curl -S -H "Authorization: token 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" -o c:/yo/autocrop.exe "https://raw.githubusercontent.com/codekaze/yo/master/python-script/autocrop.exe"';
 
-    var f = File("c:/yo/script.bat");
-    f.writeAsStringSync(cmdS);
+  //   var f = File("c:/yo/script.bat");
+  //   f.writeAsStringSync(cmdS);
 
-    exec("c:/yo/script.bat");
-    exec('SETX PATH "%PATH%;c:\yo"');
+  //   exec("c:/yo/script.bat");
+  //   exec('SETX PATH "%PATH%;c:\yo"');
 
-    print("Generate autocrop.exe DONE");
-    f.deleteSync();
-  }
+  //   print("Generate autocrop.exe DONE");
+  //   f.deleteSync();
+  // }
 
   List mustRegisteredPath = [
     "C:\\yo",
+    "C:\\flutter\\bin",
     "C:\\flutter\\.pub-cache\\bin",
     "C:\\flutter\\bin\\cache\\dart-sdk\\bin",
     "C:\\flutter\\bin\\cache\\dart-sdk\\bin\\cache\\dart-sdk\\bin",
@@ -57,14 +59,22 @@ void main(List<String> args) async {
     fullPath += ";$path";
   });
 
+  var currentPath = exec("echo %PATH%");
+  fullPath = currentPath + fullPath;
+  fullPath = fullPath.replaceAll(";;", ";");
+  var arr = fullPath.split(";");
+
+  arr = arr.toSet().toList();
+  fullPath = arr.join(";");
+
   execLines([
-    'SETX PATH "%PATH%$fullPath"',
+    'SETX PATH "$fullPath"',
   ]);
 
   execLines([
     'SETX JAVA_HOME "C:\\Program Files\\Android\\Android Studio\\jre"',
   ]);
-  
+
   var fullArgumentString = args.join(" ");
   var command = args.isEmpty ? "" : args[0];
 
@@ -139,6 +149,11 @@ void main(List<String> args) async {
     print("This command will do a deploy to website");
     print("--------------");
     Deploy.run(fullArgumentString);
+  } else if (command == "check") {
+    print("--------------");
+    print("This command will Check Google Drive");
+    print("--------------");
+    // Deploy.run(fullArgumentString);
   }
   //
   else {
