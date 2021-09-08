@@ -170,6 +170,12 @@ void main(List<String> args) async {
         if (!File(myPath).existsSync()) {
           print("This File not Exists: $myPath");
           count++;
+
+          var dir = Directory(myPath.split("\\").last);
+          if (!dir.existsSync()) {
+            dir.createSync(recursive: true);
+          }
+
           File(f.path).copySync(myPath);
           return;
           // await Future.delayed(Duration(seconds: 1000));
