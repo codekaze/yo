@@ -167,11 +167,12 @@ void main(List<String> args) async {
         var shortPath = f.path.split("\\UI8\\")[1];
         var myPath = "G:\\Shared drives\\MY SHARED DRIVE HHH\\" + shortPath;
 
+        myPath = myPath.replaceAll("/", "\\");
         if (!File(myPath).existsSync()) {
           print("This File not Exists: $myPath");
           count++;
 
-          var dir = Directory(myPath.split('/').last);
+          var dir = Directory(myPath.split('\\').last);
           if (!dir.existsSync()) {
             dir.createSync(recursive: true);
           }
