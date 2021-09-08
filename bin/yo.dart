@@ -172,7 +172,7 @@ void main(List<String> args) async {
           print("This File not Exists: $myPath");
           count++;
 
-          var dir = Directory(myPath.split('\\').last);
+          Directory dir = Directory(myPath.split('\\').last);
           if (!dir.existsSync()) {
             dir.createSync(recursive: true);
           }
