@@ -75,6 +75,10 @@ void main(List<String> args) async {
   ]);
 
   execLines([
+    'SET PATH="$fullPath"',
+  ]);
+
+  execLines([
     'SETX JAVA_HOME "C:\\Program Files\\Android\\Android Studio\\jre"',
   ]);
 
