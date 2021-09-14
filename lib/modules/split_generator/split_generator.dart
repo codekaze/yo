@@ -1,6 +1,7 @@
 import "dart:io";
 
 import 'package:yo/shared/helper/exec/exec.dart';
+import 'package:yo/shared/helper/template/template.dart';
 
 class SpitGenerator {
   static run() async {
@@ -45,8 +46,11 @@ class SpitGenerator {
               File(dir.path + "\\lib\\module\\$dirName\\config.dart");
           var lines = configDartFile.readAsLinesSync();
           var importString = lines[0];
-          var mainNavigationClass =
-              lines[2].split("home = ").last.replaceAll(";", "");
+          var mainNavigationClass = lines[2]
+              .split("home = ")
+              .last
+              .replaceAll(";", "")
+              .replaceAll("()", "");
 
           var mainDartFile = File(target + "\\lib\\main.dart");
 
@@ -67,6 +71,8 @@ class SpitGenerator {
               ));
             }
           """);
+
+          Template.format(mainDartFile.path);
 
           //===================
         }
