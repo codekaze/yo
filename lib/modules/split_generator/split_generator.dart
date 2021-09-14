@@ -33,7 +33,7 @@ class SpitGenerator {
       ]);
 
       //Remove Unused Modules
-      moduleDirs.forEach((subMDirs) async {
+      moduleDirs.forEach((subMDirs) {
         if (subMDirs != dirName) {
           execLines([
             "rmdir /s /q \"$target\\lib\\module\\$subMDirs\"",
@@ -50,15 +50,13 @@ class SpitGenerator {
           lines[2].split("home = ").last.replaceAll(";", "");
 
       print(dirName);
+      print(configDartFile.path);
       print(lines[2]);
       print(mainNavigationClass);
 
       var mainDartFile = File(target + "\\lib\\main.dart");
 
-      mainDartFile.writeAsString("""
-            //$dirName
-            //${lines[2]}
-            //$mainNavigationClass
+      mainDartFile.writeAsStringSync("""
             import 'package:codekaze_free_ui_kit/main_setup.dart';
             import 'package:flutter/material.dart';
 
@@ -76,15 +74,17 @@ class SpitGenerator {
             }
           """);
 
-      // Template.format(mainDartFile.path);
+      Template.format(mainDartFile.path);
 
       //===================
 
       //format code
-      // execLines([
-      //   "cd \"$target\"",
-      //   "flutter pub global run yo core",
-      // ], workingDirectory: target);
+      execLines([
+        "cd \"$target\"",
+        "flutter pub global run yo core",
+        "flutter clean",
+        "flutter pub get",
+      ], workingDirectory: target);
     });
   }
 }
