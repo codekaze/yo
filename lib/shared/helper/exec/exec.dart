@@ -35,13 +35,14 @@ dynamic exec(
     [],
     workingDirectory: null,
     runInShell: true,
-    
-
   );
   return res.stdout;
 }
 
-dynamic execLines(List<String> commandList) {
+dynamic execLines(
+  List<String> commandList, {
+  String workingDirectory,
+}) {
   writeSeparator();
   print("ExecLines CommandList:");
   print(commandList);
@@ -51,7 +52,10 @@ dynamic execLines(List<String> commandList) {
   Directory("c:/yo_temp/").createSync();
   File ff = File(tempFilePath);
   ff.writeAsStringSync(commandList.join("\n"));
-  var res = execr(tempFilePath);
+  var res = execr(
+    tempFilePath,
+    workingDirectory: workingDirectory,
+  );
   ff.deleteSync();
   return res;
 }
