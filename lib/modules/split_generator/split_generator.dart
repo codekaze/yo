@@ -75,7 +75,7 @@ class SpitGenerator {
       //format code
       execLines([
         "flutter pub global run yo core",
-      ]);
+      ], workingDirectory: target);
     });
   }
 }
