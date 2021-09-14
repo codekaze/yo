@@ -24,6 +24,7 @@ class SpitGenerator {
     execLines(["rmdir /s /q \"${dir.path}\\build\""]);
 
     moduleDirs.forEach((dirName) {
+      if (dirName == "main_dashboard") return;
       var target =
           "C:\\Users\\User\\Documents\\FLUTTER_PROJECT\\ui_kit_project\\$dirName";
       execLines([
