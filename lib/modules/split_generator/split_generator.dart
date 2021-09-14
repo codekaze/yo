@@ -38,24 +38,27 @@ class SpitGenerator {
           execLines([
             "rmdir /s /q \"$target\\lib\\module\\$subMDirs\"",
           ]);
-        } else {
-          if (dirName == "main_dashboard") return;
-          //Current /Module Directory
+        }
+      });
 
-          //Update main.dart
-          var configDartFile =
-              File(dir.path + "\\lib\\module\\$dirName\\config.dart");
-          var lines = configDartFile.readAsLinesSync();
-          var importString = lines[0];
-          var mainNavigationClass = lines[2]
-              .split("home = ")
-              .last
-              .replaceAll(";", "")
-              .replaceAll("()", "");
+      //Update main.dart
+      var configDartFile =
+          File(dir.path + "\\lib\\module\\$dirName\\config.dart");
+      var lines = configDartFile.readAsLinesSync();
+      var importString = lines[0];
+      var mainNavigationClass =
+          lines[2].split("home = ").last.replaceAll(";", "");
 
-          var mainDartFile = File(target + "\\lib\\main.dart");
+      print(dirName);
+      print(lines[2]);
+      print(mainNavigationClass);
 
-          mainDartFile.writeAsStringSync("""
+      var mainDartFile = File(target + "\\lib\\main.dart");
+
+      mainDartFile.writeAsString("""
+            //$dirName
+            //${lines[2]}
+            //$mainNavigationClass
             import 'package:codekaze_free_ui_kit/main_setup.dart';
             import 'package:flutter/material.dart';
 
@@ -68,22 +71,20 @@ class SpitGenerator {
               runApp(MaterialApp(
                 debugShowCheckedModeBanner: false,
                 theme: travelTheme,
-                home: $mainNavigationClass(),
+                home: $mainNavigationClass,
               ));
             }
           """);
 
-          Template.format(mainDartFile.path);
+      // Template.format(mainDartFile.path);
 
-          //===================
-        }
-      });
+      //===================
 
       //format code
-      execLines([
-        "cd \"$target\"",
-        "flutter pub global run yo core",
-      ], workingDirectory: target);
+      // execLines([
+      //   "cd \"$target\"",
+      //   "flutter pub global run yo core",
+      // ], workingDirectory: target);
     });
   }
 }
