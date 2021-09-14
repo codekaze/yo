@@ -36,8 +36,6 @@ class GitHelper {
   }
 
   static config() {
-    var dateString = DateFormat('EEE, MMM d, kk:mm:ss').format(DateTime.now());
-
     var res = exec("git config user.name");
     print(res);
 

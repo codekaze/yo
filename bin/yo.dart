@@ -1,14 +1,15 @@
-import 'dart:developer';
 import "dart:io";
 import 'package:yo/core.dart';
 import 'package:yo/modules/core_generator/core_generator.dart';
 import 'package:yo/modules/deploy/deploy.dart';
+import 'package:yo/modules/gdrive_check/gdrive_check.dart';
 import 'package:yo/modules/git_helper/git_helper.dart';
 import 'package:yo/modules/icon_generator/icon_generator.dart';
 import 'package:yo/modules/module_generator/module_generator.dart';
 import 'package:yo/modules/project_generator/project_generator.dart';
 import 'package:yo/modules/devx_build/devx_build.dart';
 import 'package:yo/modules/devx_clean/devx_clean.dart';
+import 'package:yo/modules/split_generator/split_generator.dart';
 import 'package:yo/resources/session/package_info.dart';
 import 'package:yo/shared/helper/exec/exec.dart';
 
@@ -160,38 +161,12 @@ void main(List<String> args) async {
     print("--------------");
     print("This command will Check Google Drive");
     print("--------------");
-    // Deploy.run(fullArgumentString);
-
-    Directory dir = Directory(
-        "G:\\.shortcut-targets-by-id\\17SywrFvvouStFB5OBRKD8vt8zbS72Y4H\\UI8");
-    var count = 0;
-    await dir.list(recursive: true).forEach((f) async {
-      if (f is File) {
-        if (f.path.endsWith(".ini")) return;
-        if (f.path.endsWith(".gdoc")) return;
-        var shortPath = f.path.split("\\UI8\\")[1];
-        var myPath = "G:\\Shared drives\\MY SHARED DRIVE HHH\\" + shortPath;
-
-        myPath = myPath.replaceAll("/", "\\");
-        if (!File(myPath).existsSync()) {
-          print("This File not Exists: $myPath");
-          count++;
-
-          Directory dir = Directory(myPath.split('\\').last);
-          if (!dir.existsSync()) {
-            dir.createSync(recursive: true);
-          }
-
-          File(f.path).copySync(myPath);
-          return;
-          // await Future.delayed(Duration(seconds: 1000));
-        }
-        // G:\.shortcut-targets-by-id\17SywrFvvouStFB5OBRKD8vt8zbS72Y4H\UI8\UI8
-        // G:\Shared drives\MY SHARED DRIVE HHH\UI8 Files(2018)
-      }
-    });
-
-    print("Count $count");
+    GdriveCheck.run();
+  } else if (command == "split") {
+    print("--------------");
+    print("This command will Split UI KIt Project");
+    print("--------------");
+    SpitGenerator.run();
   }
   //
   else {
