@@ -5,7 +5,7 @@ import 'package:process_run/shell.dart';
 
 dynamic execr(
   String cmd, {
-  String workingDirectory: null,
+  String workingDirectory,
 }) {
   print("#: $cmd");
   var res = exec(
