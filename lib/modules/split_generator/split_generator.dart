@@ -37,6 +37,7 @@ class SpitGenerator {
         if (subMDirs != dirName) {
           execLines([
             "rmdir /s /q \"$target\\lib\\module\\$subMDirs\"",
+            "del \"$target\\lib\\generated_plugin_registrant.dart",
           ]);
         }
       });
