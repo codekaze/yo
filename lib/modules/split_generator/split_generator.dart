@@ -57,6 +57,7 @@ class SpitGenerator {
       var mainDartFile = File(target + "\\lib\\main.dart");
 
       mainDartFile.writeAsStringSync("""
+            import 'package:bitsdojo_window/bitsdojo_window.dart';
             import 'package:codekaze_free_ui_kit/main_setup.dart';
             import 'package:flutter/material.dart';
 
@@ -71,6 +72,14 @@ class SpitGenerator {
                 theme: travelTheme,
                 home: $mainNavigationClass,
               ));
+
+              doWhenWindowReady(() {
+                final initialSize = Size(420, 860);
+                appWindow.minSize = initialSize;
+                appWindow.size = initialSize;
+                appWindow.alignment = Alignment.centerRight;
+                appWindow.show();
+              });              
             }
           """);
 
