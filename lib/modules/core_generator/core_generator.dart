@@ -18,6 +18,7 @@ class CoreGenerator {
     await dir.list(recursive: true).forEach((f) {
       if (!f.path.endsWith(".dart")) return;
       if (f.path.contains("config.dart")) return;
+      if (f.path.contains("generated_plugin_registrant.dart")) return;
 
       var fileName = cleanFileName(f.path);
       var importString = getImportString(fileName);
