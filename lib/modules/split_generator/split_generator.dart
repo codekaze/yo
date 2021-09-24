@@ -1,12 +1,17 @@
 import "dart:io";
 
 import 'package:yo/shared/helper/exec/exec.dart';
+import 'package:yo/shared/helper/name_parser/name_parser.dart';
 import 'package:yo/shared/helper/template/template.dart';
 
 class SpitGenerator {
   static run() async {
+    var userPath = execr(
+      "echo %USERPROFILE%",
+    ).toString().trim();
+
     var dir = Directory(
-        "C:\\Users\\User\\Documents\\FLUTTER_PROJECT\\codekaze_ui_kit_project");
+        "$userPath\\Documents\\FLUTTER_PROJECT\\codekaze_ui_kit_project");
 
     var module = Directory(dir.path + "\\lib\\module");
     List moduleDirs = [];
@@ -26,10 +31,18 @@ class SpitGenerator {
     moduleDirs.forEach((dirName) {
       if (dirName == "main_dashboard") return;
       var target =
-          "C:\\Users\\User\\Documents\\FLUTTER_PROJECT\\ui_kit_project\\$dirName";
+          "$userPath\\Documents\\FLUTTER_PROJECT\\ui_kit_project\\$dirName";
+
+      var copyTheme =
+          "xcopy \"${dir.path}\\lib\\module\\$dirName\\theme.dart\" \"$target\\lib\\module\\$dirName\\theme.dart\" /F";
+      var themeVariableName = NameParser.getVariableName(dirName) + "Theme";
+      print("CopyTheme: $copyTheme");
+
       execLines([
+        "rmdir /s /q \"$target\"",
         "xcopy \"${dir.path}\" \"$target\" /E/H/C/I",
         "rmdir /s /q \"$target\\.git\"",
+        copyTheme,
       ]);
 
       //Remove Unused Modules
@@ -62,7 +75,7 @@ class SpitGenerator {
             import 'package:codekaze_free_ui_kit/main_setup.dart';
             import 'package:flutter/material.dart';
 
-            import 'global/theme/traveL_theme.dart';
+            import 'module/$dirName/theme.dart';
             $importString
 
             void main() async {
@@ -70,7 +83,7 @@ class SpitGenerator {
 
               runApp(MaterialApp(
                 debugShowCheckedModeBanner: false,
-                theme: travelTheme,
+                theme: $themeVariableName,
                 home: $mainNavigationClass,
               ));
 
