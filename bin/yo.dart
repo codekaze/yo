@@ -86,6 +86,16 @@ void main(List<String> args) async {
   var fullArgumentString = args.join(" ");
   var command = args.isEmpty ? "" : args[0];
 
+  if (!File("C:\\flutter\\.pub-cache\\bin\\rename.bat").existsSync()) {
+    print("Rename package is required, installing package");
+    exec("flutter pub global activate rename");
+  }
+
+  if (!File("C:\\flutter\\.pub-cache\\bin\\cider.bat").existsSync()) {
+    print("Cider package is required, installing package");
+    exec("flutter pub global activate cider");
+  }
+
   if (command == "module") {
     if (hasPubspec) {
       await getPackageName();

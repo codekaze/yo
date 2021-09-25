@@ -36,6 +36,7 @@ class SpitGenerator {
       var copyTheme =
           "xcopy \"${dir.path}\\lib\\module\\$dirName\\theme.dart\" \"$target\\lib\\module\\$dirName\\theme.dart\" /F";
       var themeVariableName = NameParser.getVariableName(dirName) + "Theme";
+      var moduleTitleName = NameParser.getTitle(dirName);
       print("CopyTheme: $copyTheme");
 
       execLines([
@@ -105,6 +106,8 @@ class SpitGenerator {
       execLines([
         "cd \"$target\"",
         "flutter pub global run yo core",
+        "rename --bundleId com.codekaze.$dirName",
+        "rename --appname \"$moduleTitleName\"",
         "flutter clean",
         "flutter pub get",
       ], workingDirectory: target);
