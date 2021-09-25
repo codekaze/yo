@@ -82,7 +82,7 @@ class SpitGenerator {
             void main() async {
               await MainSetup.setup();
 
-              runApp(MaterialApp(
+              runApp(GetMaterialApp(
                 debugShowCheckedModeBanner: false,
                 theme: $themeVariableName,
                 home: $mainNavigationClass,
