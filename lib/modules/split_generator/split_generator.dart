@@ -102,6 +102,24 @@ class SpitGenerator {
 
       //===================
 
+      execLines([
+        "cd \"$target\"",
+        "rmdir /s /q \"$target\\windows\"",
+        "flutter create .",
+      ], workingDirectory: target);
+
+      //update main.cpp
+      var mainCppFile = File("$target\\windows\\runner\\main.cpp");
+      List cppContents = mainCppFile.readAsLinesSync();
+
+      cppContents = [
+        "#include <bitsdojo_window_windows/bitsdojo_window_plugin.h>",
+        "auto bdw = bitsdojo_window_configure(BDW_CUSTOM_FRAME | BDW_HIDE_ON_STARTUP);",
+        ...cppContents,
+      ];
+
+      mainCppFile.writeAsStringSync(cppContents.join("\r\n"));
+
       //format code
       execLines([
         "cd \"$target\"",
