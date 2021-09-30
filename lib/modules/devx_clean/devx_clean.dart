@@ -8,7 +8,9 @@ class WifeClean {
 
     for (var i = 0; i < arr.length; i++) {
       var line = arr[i];
-      if (line.indexOf("Unused import:") != -1) {
+      if (line.indexOf("Unused import:") > -1 ||
+          line.indexOf("is unnecessary because all of the used elements are") >
+              -1) {
         var str = line;
         str = str.replaceAll("info - Unused import: ", "");
         str = str.replaceAll(" - unused_import", "");
