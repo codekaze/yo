@@ -128,6 +128,7 @@ class SpitGenerator {
         "rename --appname \"$moduleTitleName\"",
         "flutter clean",
         "flutter pub get",
+        "rmdir /s /q \"$target\\test\"",
       ], workingDirectory: target);
     });
   }
