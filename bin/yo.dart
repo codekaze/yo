@@ -1,5 +1,6 @@
 import "dart:io";
 import 'package:yo/core.dart';
+import 'package:yo/modules/archive/archive_generator.dart';
 import 'package:yo/modules/core_generator/core_generator.dart';
 import 'package:yo/modules/deploy/deploy.dart';
 import 'package:yo/modules/gdrive_check/gdrive_check.dart';
@@ -177,6 +178,11 @@ void main(List<String> args) async {
     print("This command will Split UI KIt Project");
     print("--------------");
     SpitGenerator.run();
+  } else if (command == "archive") {
+    print("--------------");
+    print("This command will Archive Current Project");
+    print("--------------");
+    ArchiveGenerator.run();
   }
   //
   else {
