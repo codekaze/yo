@@ -12,7 +12,6 @@ class ArchiveGenerator {
       "echo %cd%",
     ).toString().trim();
 
-
     var arr = currentDirectory.split("\\");
     var directoryName = arr.last;
 
@@ -39,14 +38,18 @@ class ArchiveGenerator {
       "echo %ProgramFiles%",
     ).toString().trim();
 
+    String zipFileName = "${directoryName}_source_and_docs.zip";
+    String zipPath = "c:\\yo_temp\\$zipFileName";
+    String zipGoogleDrivePath = "G:\\My Drive\\Codecanyon\\$directoryName\\";
+
     execLines([
-      '"$programFilesDir\\WinRAR\\Rar.exe" a -ep1 -idq -r -y "c:\\yo_temp\\source_and_docs_$directoryName.zip" "c:\\yo_temp\\$tempDirName\\*"',
-      "xcopy /S /I /Q /Y /F \"c:\\yo_temp\\source_and_docs_$directoryName.zip\" \"G:\\My Drive\\Codecanyon\\$directoryName\"",
+      '"$programFilesDir\\WinRAR\\Rar.exe" a -ep1 -idq -r -y "$zipPath" "c:\\yo_temp\\$tempDirName\\*"',
+      "xcopy /S /I /Q /Y /F \"$zipPath\" \"$zipGoogleDrivePath\"",
     ]);
 
     execLines([
       'rmdir /s /q "c:\\yo_temp\\$tempDirName\\"',
-      'del "c:\\yo_temp\\source_and_docs_$directoryName.zip"',
+      'del "$zipPath"',
     ]);
   }
 }
