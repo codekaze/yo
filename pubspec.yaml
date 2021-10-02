@@ -10,7 +10,7 @@ dependencies:
   path: ^1.7.0
   intl: ^0.17.0
   ftpconnect: ^1.0.0
-  uuid:
+  uuid: ^3.0.4
   
 dev_dependencies: 
   pedantic: ^1.9.0
