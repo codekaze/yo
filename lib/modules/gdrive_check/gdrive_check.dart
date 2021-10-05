@@ -22,7 +22,15 @@ class GdriveCheck {
             dir.createSync(recursive: true);
           }
 
-          File(f.path).copySync(myPath);
+          try {
+            File(f.path).copySync(myPath);
+          } on Exception catch (_) {
+            print("----------");
+            print("COPY FILE EXCEPTION");
+            print("from: ${f.path}");
+            print("to: ${myPath}");
+            print("----------");
+          }
           return;
           // await Future.delayed(Duration(seconds: 1000));
         }
