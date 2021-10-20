@@ -51,7 +51,7 @@ void main(List<String> args) async {
     "C:\\flutter\\.pub-cache\\bin",
     "C:\\flutter\\bin\\cache\\dart-sdk\\bin",
     "C:\\flutter\\bin\\cache\\dart-sdk\\bin\\cache\\dart-sdk\\bin",
-    "C:\\Program Files\\Android\\Android Studio\\jre",
+    "C:\\Program Files\\Android\\Android Studio\\jre\\bin",
     //PHP & MYSQL
     "C:\\xampp\\mysql\\bin",
     "C:\\xampp\\php",
