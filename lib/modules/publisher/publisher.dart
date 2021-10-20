@@ -30,9 +30,15 @@ class Publisher {
 
     print("Publishing...");
     execLines([
+      "flutter pub publish --force",
+    ]);
+
+    print("Push to Github");
+    execLines([
       "git add .",
       "git commit -m \"Set new Version to ${nv}\"",
       "git push",
     ]);
+    print("Done!");
   }
 }
