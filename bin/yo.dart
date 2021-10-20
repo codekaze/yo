@@ -10,6 +10,7 @@ import 'package:yo/modules/module_generator/module_generator.dart';
 import 'package:yo/modules/project_generator/project_generator.dart';
 import 'package:yo/modules/devx_build/devx_build.dart';
 import 'package:yo/modules/devx_clean/devx_clean.dart';
+import 'package:yo/modules/publisher/publisher.dart';
 import 'package:yo/modules/split_generator/split_generator.dart';
 import 'package:yo/resources/session/package_info.dart';
 import 'package:yo/shared/helper/exec/exec.dart';
@@ -183,6 +184,11 @@ void main(List<String> args) async {
     print("This command will Archive Current Project");
     print("--------------");
     ArchiveGenerator.run();
+  } else if (command == "publish") {
+    print("--------------");
+    print("This command will Publish Current Project");
+    print("--------------");
+    Publisher.run();
   }
   //
   else {
