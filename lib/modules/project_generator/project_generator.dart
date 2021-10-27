@@ -65,7 +65,8 @@ class ProjectGenerator {
     // exec('del /s /q /f .git');
     // exec('del /s /q /f .git');
     // exec('del /s /q /f *');
-    exec('git clone https://github.com/codekaze/codekaze_app .');
+    //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
+    exec('git clone https://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@github.com/codekaze/codekaze_app .');
 
     // print(res);
     // exec('del /s /q /f .git');
