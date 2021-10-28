@@ -13,6 +13,7 @@ import 'package:yo/modules/devx_clean/devx_clean.dart';
 import 'package:yo/modules/publisher/publisher.dart';
 import 'package:yo/modules/split_generator/booking_core_split_generator.dart';
 import 'package:yo/modules/split_generator/split_generator.dart';
+import 'package:yo/modules/switch_generator/switch_generator.dart';
 import 'package:yo/resources/session/package_info.dart';
 import 'package:yo/shared/helper/exec/exec.dart';
 
@@ -183,11 +184,16 @@ void main(List<String> args) async {
     print("This command will Split UI KIt Project");
     print("--------------");
     SpitGenerator.run();
-  } else if (command == "booking_core_split") {
+  } else if (command == "bc_split") {
     print("--------------");
     print("This command will Split Booking Core Apps Project");
     print("--------------");
     BookingCoreSpitGenerator.run();
+  } else if (command == "switch") {
+    print("--------------");
+    print("This command will Switch Your App to Anoher App");
+    print("--------------");
+    SwitchGenerator.run(args[1]);
   } else if (command == "archive") {
     print("--------------");
     print("This command will Archive Current Project");

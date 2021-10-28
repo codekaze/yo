@@ -1,11 +1,73 @@
 import "dart:io";
 
+import 'package:yo/core.dart';
 import 'package:yo/shared/helper/exec/exec.dart';
 import 'package:yo/shared/helper/name_parser/name_parser.dart';
 import 'package:yo/shared/helper/template/template.dart';
 
+extension StringExtension on String {
+  String get fileName {
+    var str = this;
+    str = str.replaceAll("/", "\\");
+    return str.split("\\").last;
+  }
+}
+
 class BookingCoreSpitGenerator {
   static run() async {
+    Directory currentDir = Directory.current;
+    print("Current DIR: ${currentDir.path}");
+
+    var dirs = [];
+    Directory("${currentDir.path}/lib/config")
+        .listSync(
+      recursive: false,
+    )
+        .forEach((element) {
+      if (element is Directory) {
+        dirs.add(element.path);
+      }
+    });
+
+    execLines([
+      'rmdir /s /q "${currentDir.path}/build"',
+    ]);
+
+    for (var i = 0; i < dirs.length; i++) {
+      var appName = dirs[i].toString().fileName;
+      var target = '${currentDir.path}/../generated/$appName';
+
+      execLines([
+        'rmdir /s /q "$target"',
+        'xcopy "${currentDir.path}" "$target" /E/H/C/I',
+        'rmdir /s /q "$target/lib/config/"',
+      ]);
+
+      var dummyApiClassName = "${NameParser.getClassName(appName)}DummyApi";
+      var dummyApiFileName =
+          "${NameParser.getFileName(appName)}_dummy_api.dart";
+      print(dummyApiFileName);
+
+      var f = File('${currentDir.path}/lib/config/$appName/$dummyApiFileName');
+      var content = f.readAsStringSync();
+
+      content = content.replaceAll(dummyApiClassName, "MainDummyApi");
+
+      Directory('$target/lib/config/').createSync();
+      var tf = File('$target/lib/config/main_dummy_api.dart');
+      tf.writeAsStringSync(content);
+
+      execLines([
+        "cd \"$target\"",
+        "flutter pub global run yo core",
+        "rename --bundleId com.codekaze.$appName",
+        "rename --appname \"${NameParser.getClassName(appName)}\"",
+        "flutter clean",
+        "flutter pub get",
+      ], workingDirectory: target);
+    }
+
+    return;
     var userPath = execr(
       "echo %USERPROFILE%",
     ).toString().trim();
