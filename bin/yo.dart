@@ -30,6 +30,9 @@ void main(List<String> args) async {
   var dir = Directory("c:/yo");
   if (!dir.existsSync()) {
     dir.createSync();
+
+    var f = File("c:/yo/yox.bat");
+    f.writeAsStringSync("flutter pub global run yo %*");
   }
 
   // if (!File("c:/yo/autocrop.exe").existsSync()) {
