@@ -6,7 +6,9 @@ class Requirement {
   static Future<bool> isValid() {
     List<bool> validations = [];
     validations.addAll([
+      // cider: ^0.1.0
       File('C:\\flutter\\.pub-cache\\bin\\cider.bat').existsSync(),
+      // rename: ^1.3.1
       File('C:\\flutter\\.pub-cache\\bin\\rename.bat').existsSync(),
     ]);
 

@@ -199,6 +199,11 @@ void main(List<String> args) async {
     print("This command will Publish Current Project");
     print("--------------");
     Publisher.run();
+  } else if (command == "rename") {
+    print("--------------");
+    print("This command will Rename Current Project Package/Name");
+    print("--------------");
+    // ArchiveGenerator.run();
   }
   //
   else {
