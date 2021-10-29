@@ -11,6 +11,12 @@ extension StringExtension on String {
     str = str.replaceAll("/", "\\");
     return str.split("\\").last;
   }
+
+  String get fixFormat {
+    var str = this;
+    str = str.replaceAll("/", "\\");
+    return str;
+  }
 }
 
 class SwitchGenerator {
@@ -46,5 +52,15 @@ class SwitchGenerator {
 
     var tf = File('$target/lib/config/main_dummy_api.dart');
     tf.writeAsStringSync(content);
+
+    //Change Icon
+    var appAssetDir =
+        '${currentDir.path}/lib/config/$appName/assets/'.fixFormat;
+    var projectAssetDir = '${currentDir.path}/assets/'.fixFormat;
+
+    execLines([
+      'xcopy "$appAssetDir" "$projectAssetDir" /E/H/C/I/Y/S',
+      'flutter pub run flutter_launcher_icons:main',
+    ]);
   }
 }

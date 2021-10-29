@@ -11,6 +11,7 @@ import 'package:yo/modules/project_generator/project_generator.dart';
 import 'package:yo/modules/devx_build/devx_build.dart';
 import 'package:yo/modules/devx_clean/devx_clean.dart';
 import 'package:yo/modules/publisher/publisher.dart';
+import 'package:yo/modules/requirement/requirement.dart';
 import 'package:yo/modules/split_generator/booking_core_split_generator.dart';
 import 'package:yo/modules/split_generator/split_generator.dart';
 import 'package:yo/modules/switch_generator/switch_generator.dart';
@@ -23,6 +24,10 @@ void main(List<String> args) async {
   if (pubSpecFile.existsSync()) {
     await getPackageName();
     hasPubspec = true;
+  }
+
+  if (!await Requirement.isValid()) {
+    return;
   }
 
   // await generateDefinedTemplate();
@@ -92,16 +97,6 @@ void main(List<String> args) async {
 
   var fullArgumentString = args.join(" ");
   var command = args.isEmpty ? "" : args[0];
-
-  if (!File("C:\\flutter\\.pub-cache\\bin\\rename.bat").existsSync()) {
-    print("Rename package is required, installing package");
-    exec("flutter pub global activate rename");
-  }
-
-  if (!File("C:\\flutter\\.pub-cache\\bin\\cider.bat").existsSync()) {
-    print("Cider package is required, installing package");
-    exec("flutter pub global activate cider");
-  }
 
   if (command == "module") {
     if (hasPubspec) {
