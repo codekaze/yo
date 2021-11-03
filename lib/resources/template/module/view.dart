@@ -8,14 +8,13 @@ class ModuleViewTemplate {
     import 'package:get/get.dart';
 
     class ExampleView extends StatelessWidget {
-      final controller = Get.put(ExampleController());
-      
       @override
       Widget build(BuildContext context) {
-        controller.view = this;
-        
         return GetBuilder<ExampleController>(
-          builder: (_) {
+          init: ExampleController(),
+          builder: (controller) {
+            controller.view = this;
+
             return Scaffold(
               appBar: AppBar(
                 title: Text("ModuleTitle"),
