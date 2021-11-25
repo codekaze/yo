@@ -37,7 +37,7 @@ void main(List<String> args) async {
   if (!dir.existsSync()) {
     dir.createSync();
 
-    var f = File("c:/yo/yox.bat");
+    var f = File("c:/yo/yoxdev.bat");
     f.writeAsStringSync("flutter pub global run yox %*");
   }
 
