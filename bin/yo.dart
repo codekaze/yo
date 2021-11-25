@@ -38,7 +38,7 @@ void main(List<String> args) async {
     dir.createSync();
 
     var f = File("c:/yo/yox.bat");
-    f.writeAsStringSync("flutter pub global run yo %*");
+    f.writeAsStringSync("flutter pub global run ro %*");
   }
 
   // if (!File("c:/yo/autocrop.exe").existsSync()) {
@@ -116,7 +116,7 @@ void main(List<String> args) async {
   } else if (command == "init") {
     print("--------------");
     print("DevxInit");
-    print("This command will create a project with yo app templates");
+    print("This command will create a project with ro app templates");
     print("--------------");
     ProjectGenerator.create();
   } else if (command == "generate_icon") {
@@ -212,22 +212,22 @@ void main(List<String> args) async {
     print("by Codekaze");
     print("--------------");
     print("Init Project");
-    print("code: yo init");
+    print("code: ro init");
     print("--------------");
     print("Create Module");
-    print("code: yo module create [module_name]");
-    print("example: yo module create product_list");
-    print("example: yo module create product/product_list");
+    print("code: ro module create [module_name]");
+    print("example: ro module create product_list");
+    print("example: ro module create product/product_list");
     print("--------------");
     print("Generate Icon");
     print("1. Update icon files in assets/icon/icon.png");
-    print("2. Run > yo generate_icon");
+    print("2. Run > ro generate_icon");
     print("--------------");
     print("Remove Unused Import");
-    print("1. Run > yo clean");
+    print("1. Run > ro clean");
     print("--------------");
     print("Import all files to core.dart");
-    print("1. Run > yo core");
+    print("1. Run > ro core");
     print("--------------");
   }
 }

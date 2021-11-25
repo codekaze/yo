@@ -10,41 +10,41 @@ Run this command to test:
 yo
 ``` 
 
-## Create Yo Project
+## Create ro Project
 ```
-yo init
+ro init
 ```
 
 
 ## Create Module
 ```
-yo module create [module_name]
+ro module create [module_name]
 ```
 
 example:
 ```
-yo module create product
+ro module create product
 ```
 
 ```
-yo module create product/product_list
-yo module create product/product_form
+ro module create product/product_list
+ro module create product/product_form
 ```
 
 ## Generate Icon
 1. Update icon file in assets/icon/icon.png
 2. Run this command:
 ```
-yo generate_icon
+ro generate_icon
 ```
 
 ## Remove Unused Import
 ```
-yo clean
+ro clean
 ```
 
 
 ## Generate core.dart File
 ```
-yo core
+ro core
 ```

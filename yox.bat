@@ -1,1 +1,1 @@
-flutter pub global run yo %*
+flutter pub global run ro %*

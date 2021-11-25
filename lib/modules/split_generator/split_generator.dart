@@ -123,7 +123,7 @@ class SpitGenerator {
       //format code
       execLines([
         "cd \"$target\"",
-        "flutter pub global run yo core",
+        "flutter pub global run ro core",
         "rename --bundleId com.codekaze.$dirName",
         "rename --appname \"$moduleTitleName\"",
         "flutter clean",

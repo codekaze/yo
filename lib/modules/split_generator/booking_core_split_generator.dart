@@ -75,7 +75,7 @@ class BookingCoreSpitGenerator {
 
       execLines([
         "cd \"$target\"",
-        "flutter pub global run yo core",
+        "flutter pub global run ro core",
         "rename --bundleId com.codekaze.$appName",
         "rename --appname \"${NameParser.getTitle(appName)}\"",
         "flutter clean",
@@ -201,7 +201,7 @@ class BookingCoreSpitGenerator {
       //format code
       execLines([
         "cd \"$target\"",
-        "flutter pub global run yo core",
+        "flutter pub global run ro core",
         "rename --bundleId com.codekaze.$dirName",
         "rename --appname \"$moduleTitleName\"",
         "flutter clean",
