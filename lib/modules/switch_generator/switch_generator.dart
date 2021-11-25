@@ -1,9 +1,6 @@
 import "dart:io";
-
-import 'package:yox/core.dart';
 import 'package:yox/shared/helper/exec/exec.dart';
 import 'package:yox/shared/helper/name_parser/name_parser.dart';
-import 'package:yox/shared/helper/template/template.dart';
 
 extension StringExtension on String {
   String get fileName {

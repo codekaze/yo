@@ -1,10 +1,6 @@
 import "dart:io";
-
 import 'package:uuid/uuid.dart';
-import 'package:yo/core.dart';
-import 'package:yo/shared/helper/exec/exec.dart';
-import 'package:yo/shared/helper/name_parser/name_parser.dart';
-import 'package:yo/shared/helper/template/template.dart';
+import 'package:yox/shared/helper/exec/exec.dart';
 
 class ArchiveGenerator {
   static run() async {

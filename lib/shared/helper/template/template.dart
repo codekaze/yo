@@ -1,6 +1,6 @@
 import "dart:io";
 import 'package:process_run/shell.dart';
-import 'package:yo/resources/session/package_info.dart';
+import 'package:yox/resources/session/package_info.dart';
 
 class Template {
   static Future<bool> create(outputName, template) async {
