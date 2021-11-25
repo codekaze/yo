@@ -1,8 +1,8 @@
 import "dart:io";
 
-import 'package:yo/shared/helper/exec/exec.dart';
-import 'package:yo/shared/helper/name_parser/name_parser.dart';
-import 'package:yo/shared/helper/template/template.dart';
+import 'package:yox/shared/helper/exec/exec.dart';
+import 'package:yox/shared/helper/name_parser/name_parser.dart';
+import 'package:yox/shared/helper/template/template.dart';
 
 class SpitGenerator {
   static run() async {
@@ -123,7 +123,7 @@ class SpitGenerator {
       //format code
       execLines([
         "cd \"$target\"",
-        "flutter pub global run ro core",
+        "flutter pub global run yox core",
         "rename --bundleId com.codekaze.$dirName",
         "rename --appname \"$moduleTitleName\"",
         "flutter clean",

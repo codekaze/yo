@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:yo/shared/helper/exec/exec.dart';
+import 'package:yox/shared/helper/exec/exec.dart';
 
 class Publisher {
   static run() async {

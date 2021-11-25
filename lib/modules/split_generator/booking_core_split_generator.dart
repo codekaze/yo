@@ -1,9 +1,9 @@
 import "dart:io";
 
-import 'package:yo/core.dart';
-import 'package:yo/shared/helper/exec/exec.dart';
-import 'package:yo/shared/helper/name_parser/name_parser.dart';
-import 'package:yo/shared/helper/template/template.dart';
+import 'package:yox/core.dart';
+import 'package:yox/shared/helper/exec/exec.dart';
+import 'package:yox/shared/helper/name_parser/name_parser.dart';
+import 'package:yox/shared/helper/template/template.dart';
 
 extension StringExtension on String {
   String get fileName {
@@ -75,7 +75,7 @@ class BookingCoreSpitGenerator {
 
       execLines([
         "cd \"$target\"",
-        "flutter pub global run ro core",
+        "flutter pub global run yox core",
         "rename --bundleId com.codekaze.$appName",
         "rename --appname \"${NameParser.getTitle(appName)}\"",
         "flutter clean",
@@ -201,7 +201,7 @@ class BookingCoreSpitGenerator {
       //format code
       execLines([
         "cd \"$target\"",
-        "flutter pub global run ro core",
+        "flutter pub global run yox core",
         "rename --bundleId com.codekaze.$dirName",
         "rename --appname \"$moduleTitleName\"",
         "flutter clean",

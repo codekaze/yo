@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:yo/core.dart';
+import 'package:yox/core.dart';
 import 'common_package_exporter.dart';
 
 class CoreGenerator {

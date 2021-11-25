@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:intl/intl.dart';
-import 'package:yo/shared/helper/exec/exec.dart';
+import 'package:yox/shared/helper/exec/exec.dart';
 
 class GitHelper {
   static String userName = "";

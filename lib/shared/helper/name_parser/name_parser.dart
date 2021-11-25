@@ -1,4 +1,4 @@
-import 'package:yo/resources/session/package_info.dart';
+import 'package:yox/resources/session/package_info.dart';
 
 class ModulePath {
   String moduleDir;

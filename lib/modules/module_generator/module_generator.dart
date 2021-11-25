@@ -1,9 +1,9 @@
 import 'dart:io';
-import 'package:yo/core.dart';
-import 'package:yo/resources/template/module/controller.dart';
-import 'package:yo/resources/template/module/view.dart';
-import 'package:yo/shared/helper/name_parser/name_parser.dart';
-import 'package:yo/shared/helper/template/template.dart';
+import 'package:yox/core.dart';
+import 'package:yox/resources/template/module/controller.dart';
+import 'package:yox/resources/template/module/view.dart';
+import 'package:yox/shared/helper/name_parser/name_parser.dart';
+import 'package:yox/shared/helper/template/template.dart';
 
 class ModuleGenerator {
   static create(moduleName) async {

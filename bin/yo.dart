@@ -1,22 +1,22 @@
 import "dart:io";
-import 'package:yo/core.dart';
-import 'package:yo/modules/archive/archive_generator.dart';
-import 'package:yo/modules/core_generator/core_generator.dart';
-import 'package:yo/modules/deploy/deploy.dart';
-import 'package:yo/modules/gdrive_check/gdrive_check.dart';
-import 'package:yo/modules/git_helper/git_helper.dart';
-import 'package:yo/modules/icon_generator/icon_generator.dart';
-import 'package:yo/modules/module_generator/module_generator.dart';
-import 'package:yo/modules/project_generator/project_generator.dart';
-import 'package:yo/modules/devx_build/devx_build.dart';
-import 'package:yo/modules/devx_clean/devx_clean.dart';
-import 'package:yo/modules/publisher/publisher.dart';
-import 'package:yo/modules/requirement/requirement.dart';
-import 'package:yo/modules/split_generator/booking_core_split_generator.dart';
-import 'package:yo/modules/split_generator/split_generator.dart';
-import 'package:yo/modules/switch_generator/switch_generator.dart';
-import 'package:yo/resources/session/package_info.dart';
-import 'package:yo/shared/helper/exec/exec.dart';
+import 'package:yox/core.dart';
+import 'package:yox/modules/archive/archive_generator.dart';
+import 'package:yox/modules/core_generator/core_generator.dart';
+import 'package:yox/modules/deploy/deploy.dart';
+import 'package:yox/modules/gdrive_check/gdrive_check.dart';
+import 'package:yox/modules/git_helper/git_helper.dart';
+import 'package:yox/modules/icon_generator/icon_generator.dart';
+import 'package:yox/modules/module_generator/module_generator.dart';
+import 'package:yox/modules/project_generator/project_generator.dart';
+import 'package:yox/modules/devx_build/devx_build.dart';
+import 'package:yox/modules/devx_clean/devx_clean.dart';
+import 'package:yox/modules/publisher/publisher.dart';
+import 'package:yox/modules/requirement/requirement.dart';
+import 'package:yox/modules/split_generator/booking_core_split_generator.dart';
+import 'package:yox/modules/split_generator/split_generator.dart';
+import 'package:yox/modules/switch_generator/switch_generator.dart';
+import 'package:yox/resources/session/package_info.dart';
+import 'package:yox/shared/helper/exec/exec.dart';
 
 void main(List<String> args) async {
   var pubSpecFile = await File("./pubspec.yaml");
@@ -38,7 +38,7 @@ void main(List<String> args) async {
     dir.createSync();
 
     var f = File("c:/yo/yox.bat");
-    f.writeAsStringSync("flutter pub global run ro %*");
+    f.writeAsStringSync("flutter pub global run yox %*");
   }
 
   // if (!File("c:/yo/autocrop.exe").existsSync()) {
@@ -116,7 +116,7 @@ void main(List<String> args) async {
   } else if (command == "init") {
     print("--------------");
     print("DevxInit");
-    print("This command will create a project with ro app templates");
+    print("This command will create a project with yox app templates");
     print("--------------");
     ProjectGenerator.create();
   } else if (command == "generate_icon") {
@@ -212,22 +212,22 @@ void main(List<String> args) async {
     print("by Codekaze");
     print("--------------");
     print("Init Project");
-    print("code: ro init");
+    print("code: yox init");
     print("--------------");
     print("Create Module");
-    print("code: ro module create [module_name]");
-    print("example: ro module create product_list");
-    print("example: ro module create product/product_list");
+    print("code: yox module create [module_name]");
+    print("example: yox module create product_list");
+    print("example: yox module create product/product_list");
     print("--------------");
     print("Generate Icon");
     print("1. Update icon files in assets/icon/icon.png");
-    print("2. Run > ro generate_icon");
+    print("2. Run > yox generate_icon");
     print("--------------");
     print("Remove Unused Import");
-    print("1. Run > ro clean");
+    print("1. Run > yox clean");
     print("--------------");
     print("Import all files to core.dart");
-    print("1. Run > ro core");
+    print("1. Run > yox core");
     print("--------------");
   }
 }
