@@ -47,6 +47,7 @@ class BookingCoreSpitGenerator {
         'rmdir /s /q "$target"',
         'xcopy "${currentDir.path}" "$target" /E/H/C/I',
         'rmdir /s /q "$target/lib/config/"',
+        'rmdir /s /q "$target/lib/config_backup/"',
       ]);
 
       var dummyApiClassName = "${NameParser.getClassName(appName)}DummyApi";
@@ -73,11 +74,36 @@ class BookingCoreSpitGenerator {
         'flutter pub run flutter_launcher_icons:main',
       ]);
 
+      var androidPackageName = "com.codekaze.$appName";
+      print("Rename to $androidPackageName");
+      //---------------------
+      //!TODO:
+      var fileList = Directory("$target")
+          .listSync(
+            recursive: true,
+          )
+          .toList();
+
+      for (var x = 0; x < fileList.length; x++) {
+        var f = fileList[x];
+        if (f is File) {
+          if (f.path.endsWith(".dart") ||
+              f.path.endsWith(".gradle") ||
+              f.path.endsWith(".xml") ||
+              f.path.endsWith(".yaml") ||
+              f.path.endsWith(".kt")) {
+            var content = f.readAsStringSync();
+            content = content.replaceAll("booking_core_api", "$appName");
+            f.writeAsStringSync(content);
+          }
+        }
+      }
+      //---------------------
       execLines([
         "cd \"$target\"",
         "flutter pub global run yox core",
-        "rename --bundleId com.codekaze.$appName",
-        "rename --appname \"${NameParser.getTitle(appName)}\"",
+        // "rename --bundleId $androidPackageName",
+        // "rename --appname \"${NameParser.getTitle(appName)}\"",
         "flutter clean",
         "flutter pub get",
       ], workingDirectory: target);
