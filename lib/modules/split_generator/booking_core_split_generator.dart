@@ -46,6 +46,7 @@ class BookingCoreSpitGenerator {
       execLines([
         'rmdir /s /q "$target"',
         'xcopy "${currentDir.path}" "$target" /E/H/C/I',
+        'xcopy "${currentDir.path}\\config\\$appName\\assets" "$target\\assets" /E/H/C/I',
         'rmdir /s /q "$target/lib/config/"',
         'rmdir /s /q "$target/lib/config_backup/"',
       ]);
