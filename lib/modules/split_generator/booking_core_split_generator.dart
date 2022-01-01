@@ -95,6 +95,7 @@ class BookingCoreSpitGenerator {
               f.path.endsWith(".kt")) {
             var content = f.readAsStringSync();
             content = content.replaceAll("booking_core_api", "$appName");
+
             f.writeAsStringSync(content);
           }
         }
@@ -102,9 +103,10 @@ class BookingCoreSpitGenerator {
       //---------------------
       execLines([
         "cd \"$target\"",
-        "flutter pub global run yox core",
+        "flutter pub global run yoxdev core",
+        "flutter pub global run yoxdev generate_icon",
         // "rename --bundleId $androidPackageName",
-        // "rename --appname \"${NameParser.getTitle(appName)}\"",
+        "rename --appname \"${NameParser.getTitle(appName)}\"",
         "flutter clean",
         "flutter pub get",
       ], workingDirectory: target);
