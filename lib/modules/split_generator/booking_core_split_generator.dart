@@ -115,19 +115,20 @@ class BookingCoreSpitGenerator {
         "copy_asset_command": copyAssetCommand,
         "app_name": androidApplicationName,
         "android_package_name": androidPackageName,
+        "working_directory": target,
       });
 
       execLines([
         "cd \"$target\"",
-        "flutter pub global run yoxdev core",
-        "flutter pub global run yoxdev generate_icon",
-        // "rename --bundleId $androidPackageName",
-        "rename --appname \"${androidApplicationName}\"",
+        "flutter pub global run rename --bundleId $androidPackageName --appname \"${androidApplicationName}\"",
+        "flutter clean",
+        "flutter pub get",
+        "yoxdev generate_icon",
       ], workingDirectory: target);
 
       execLines([
-        "flutter clean",
-        "flutter pub get",
+        "cd \"$target\"",
+        "yoxdev core",
       ], workingDirectory: target);
     }
 
