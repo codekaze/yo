@@ -123,6 +123,9 @@ class BookingCoreSpitGenerator {
         "flutter pub global run yoxdev generate_icon",
         // "rename --bundleId $androidPackageName",
         "rename --appname \"${androidApplicationName}\"",
+      ], workingDirectory: target);
+
+      execLines([
         "flutter clean",
         "flutter pub get",
       ], workingDirectory: target);
