@@ -21,6 +21,7 @@ extension StringExtension on String {
 
 class BookingCoreSpitGenerator {
   static run() async {
+    List<Map> logs = [];
     Directory currentDir = Directory.current;
     print("Current DIR: ${currentDir.path}");
 
@@ -46,9 +47,16 @@ class BookingCoreSpitGenerator {
       execLines([
         'rmdir /s /q "$target"',
         'xcopy "${currentDir.path}" "$target" /E/H/C/I',
-        'xcopy "${currentDir.path}\\config\\$appName\\assets" "$target\\assets" /E/H/C/I',
         'rmdir /s /q "$target/lib/config/"',
         'rmdir /s /q "$target/lib/config_backup/"',
+        'rmdir /s /q "$target/.git"',
+      ]);
+
+      var copyAssetCommand =
+          'xcopy "${currentDir.path}\\lib\\config\\$appName\\assets" "$target\\assets" /E/H/C/I/Y';
+
+      execLines([
+        copyAssetCommand,
       ]);
 
       var dummyApiClassName = "${NameParser.getClassName(appName)}DummyApi";
@@ -101,15 +109,32 @@ class BookingCoreSpitGenerator {
         }
       }
       //---------------------
+      var androidApplicationName = NameParser.getTitle(appName);
+
+      logs.add({
+        "copy_asset_command": copyAssetCommand,
+        "app_name": androidApplicationName,
+        "android_package_name": androidPackageName,
+      });
+
       execLines([
         "cd \"$target\"",
         "flutter pub global run yoxdev core",
         "flutter pub global run yoxdev generate_icon",
         // "rename --bundleId $androidPackageName",
-        "rename --appname \"${NameParser.getTitle(appName)}\"",
+        "rename --appname \"${androidApplicationName}\"",
         "flutter clean",
         "flutter pub get",
       ], workingDirectory: target);
+    }
+
+    for (var i = 0; i < logs.length; i++) {
+      var log = logs[i];
+      print("==================================");
+      log.forEach((key, value) {
+        print("$key: $value");
+      });
+      print("==================================");
     }
 
     return;
