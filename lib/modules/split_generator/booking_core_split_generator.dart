@@ -124,14 +124,11 @@ class BookingCoreSpitGenerator {
         "flutter pub get",
         "yoxdev clean",
         "yoxdev generate_icon",
+        "yoxdev core",
       ];
+      
       execLines([
         commands.join(" && "),
-      ], workingDirectory: target);
-
-      execLines([
-        "cd \"$target\"",
-        "yoxdev core",
       ], workingDirectory: target);
     }
 
