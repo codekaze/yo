@@ -28,7 +28,7 @@ class ArchiveGenerator {
 
     var f = File("c:\\yo_temp\\$tempDirName\\documentation.html");
     f.writeAsStringSync(
-        '<script>window.location.href = "https://codekaze.medium.com/documentation-v1-0-365ecec4b2e0";</script>');
+        '<script>window.location.href = "https://codekaze.medium.com/docs";</script>');
 
     var programFilesDir = execr(
       "echo %ProgramFiles%",
@@ -39,8 +39,13 @@ class ArchiveGenerator {
     String zipGoogleDrivePath = "G:\\My Drive\\Codecanyon\\$directoryName\\";
 
     execLines([
-      '"$programFilesDir\\WinRAR\\Rar.exe" a -ep1 -idq -r -y "$zipPath" "c:\\yo_temp\\$tempDirName\\*"',
-      "xcopy /S /I /Q /Y /F \"$zipPath\" \"$zipGoogleDrivePath\"",
+      //WIN RAR
+      // '"$programFilesDir\\WinRAR\\Rar.exe" a -ep1 -idq -r -y "$zipPath" "c:\\yo_temp\\$tempDirName\\*"',
+      // 7Zip
+      [
+        '7z a "$zipPath" "c:\\yo_temp\\$tempDirName\\*"',
+        'xcopy /S /I /Q /Y /F "$zipPath" "$zipGoogleDrivePath"',
+      ].join(" && "),
     ]);
 
     execLines([
