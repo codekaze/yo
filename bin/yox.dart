@@ -192,6 +192,11 @@ void main(List<String> args) async {
     print("This command will Build All APK for registered projects");
     print("--------------");
     BuildGenerator.run();
+  } else if (command == "archive_all") {
+    print("--------------");
+    print("This command will Build All APK for registered projects");
+    print("--------------");
+    BuildGenerator.archiveAll();
   }
   //---------------
   else if (command == "switch") {
