@@ -16,19 +16,28 @@ class BuildGenerator {
       var target = registeredProjects[i];
 
       String source =
-          r"${target}\build\app\outputs\flutter-apk\app-release.apk";
+          target + r"\build\app\outputs\flutter-apk\app-release.apk";
       String gdriveFileName =
-          target.toString().split(r"\").last.replaceAll("_", "-");
+          target.toString().split(r"\").last.replaceAll("_", "-") +
+              "-release.apk";
       String gdrivePath = "G:\\My Drive\\Codecanyon\\${gdriveFileName}";
 
       List commands = [
-        'cd "$target"',
-        "flutter build apk --release",
-        'xcopy /S /I /Q /Y /F "$source" "$gdrivePath"',
+        'cd "$target"'.trim(),
+        "flutter build apk --release".trim(),
+        'xcopy "$source" "$gdrivePath"* /Y'.trim(),
       ];
 
+      var query = commands.join(" && ").trim();
+
+      print("=====================================");
+      print("Query::");
+      print("=====================================");
+      print("$query");
+      print("=====================================");
+
       execLines([
-        commands.join(" && "),
+        query,
       ], workingDirectory: target);
     }
   }
