@@ -89,10 +89,10 @@ class BuildGenerator {
         ].join(" && "),
       ]);
 
-      execLines([
-        'rmdir /s /q "c:\\yo_temp\\$tempDirName\\"',
-        'del "$zipPath"',
-      ]);
+      // execLines([
+      //   'rmdir /s /q "c:\\yo_temp\\$tempDirName\\"',
+      //   'del "$zipPath"',
+      // ]);
     }
   }
 }
