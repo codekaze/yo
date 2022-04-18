@@ -1,6 +1,7 @@
 import "dart:io";
 import 'package:yox/core.dart';
 import 'package:yox/modules/archive/archive_generator.dart';
+import 'package:yox/modules/build_generator/build_generator.dart';
 import 'package:yox/modules/core_generator/core_generator.dart';
 import 'package:yox/modules/deploy/deploy.dart';
 import 'package:yox/modules/gdrive_check/gdrive_check.dart';
@@ -179,12 +180,21 @@ void main(List<String> args) async {
     print("This command will Split UI KIt Project");
     print("--------------");
     SpitGenerator.run();
-  } else if (command == "bc_split") {
+  }
+  //Booking Api Related
+  else if (command == "bc_split") {
     print("--------------");
     print("This command will Split Booking Core Apps Project");
     print("--------------");
     BookingCoreSpitGenerator.run();
-  } else if (command == "switch") {
+  } else if (command == "build_all") {
+    print("--------------");
+    print("This command will Build All APK for registered projects");
+    print("--------------");
+    BuildGenerator.run();
+  }
+  //---------------
+  else if (command == "switch") {
     print("--------------");
     print("This command will Switch Your App to Anoher App");
     print("--------------");

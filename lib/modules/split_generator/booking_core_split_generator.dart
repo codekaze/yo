@@ -126,7 +126,7 @@ class BookingCoreSpitGenerator {
         "yoxdev generate_icon",
         "yoxdev core",
       ];
-      
+
       execLines([
         commands.join(" && "),
       ], workingDirectory: target);
