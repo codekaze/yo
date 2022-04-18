@@ -15,7 +15,8 @@ class BuildGenerator {
     for (var i = 0; i < registeredProjects.length; i++) {
       var target = registeredProjects[i];
 
-      String source = "${target}\build\app\outputs\flutter-apk\app-release.apk";
+      String source =
+          r"${target}\build\app\outputs\flutter-apk\app-release.apk";
       String gdriveFileName =
           target.toString().split(r"\").last.replaceAll("_", "-");
       String gdrivePath = "G:\\My Drive\\Codecanyon\\${gdriveFileName}";
