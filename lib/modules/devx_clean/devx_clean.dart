@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:yox/shared/helper/dir/dir.dart';
 import 'package:yox/shared/helper/exec/exec.dart';
 
@@ -24,7 +26,6 @@ class WifeClean {
     for (var i = 0; i < arr.length; i++) {
       var line = arr[i].trim();
 
-      //TODO: Enable this
       if (line.indexOf("is unnecessary because all of the used elements are") >
           -1) {
         var str = line;

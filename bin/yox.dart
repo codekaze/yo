@@ -245,5 +245,6 @@ void main(List<String> args) async {
     print("Import all files to core.dart");
     print("1. Run > yox core");
     print("--------------");
+    print("CvC");
   }
 }
