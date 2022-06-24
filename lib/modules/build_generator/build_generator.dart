@@ -69,7 +69,7 @@ class BuildGenerator {
 
       var f = File("c:\\yo_temp\\$tempDirName\\documentation.html");
       f.writeAsStringSync(
-          '<script>window.location.href = "https://codekaze.com/docs";</script>');
+          '<script>window.location.href = "http://18.219.180.235/docs/";</script>');
 
       var programFilesDir = execr(
         "echo %ProgramFiles%",
