@@ -1,6 +1,7 @@
 import "dart:io";
 import 'package:uuid/uuid.dart';
 import 'package:yox/data/config.dart';
+import 'package:yox/shared/helper/fsx/fsx.dart';
 import 'package:yox/shared/helper/exec/exec.dart';
 
 class ArchiveGenerator {
@@ -23,11 +24,17 @@ class ArchiveGenerator {
     var uuid = Uuid();
     var tempDirName = uuid.v4();
 
-    execLines([
-      "xcopy /S /I /Q /Y /F \"$currentDirectory\" ${tempDir}\\$tempDirName\\source\\",
-    ]);
+    Fsx.copy(
+      currentDirectory,
+      "${tempDir}\\$tempDirName\\source\\",
+    );
 
     var f = File("${tempDir}\\$tempDirName\\documentation.html");
+    if (f.existsSync() == false) {
+      f.createSync(
+        recursive: true,
+      );
+    }
     f.writeAsStringSync(
         '<script>window.location.href = "http://18.219.180.235/docs/";</script>');
 
@@ -35,19 +42,17 @@ class ArchiveGenerator {
     String zipPath = "${tempDir}\\$zipFileName";
     String zipGoogleDrivePath = "${mainGdrivePath}\\$directoryName\\";
 
-    execLines([
-      //WIN RAR
-      // '"$programFilesDir\\WinRAR\\Rar.exe" a -ep1 -idq -r -y "$zipPath" "${tempDir}\\$tempDirName\\*"',
-      // 7Zip
-      [
-        '7z a "$zipPath" "${tempDir}\\$tempDirName\\*"',
-        'xcopy /S /I /Q /Y /F "$zipPath" "$zipGoogleDrivePath"',
-      ].join(" && "),
-    ]);
+    Fsx.archive(
+      zipPath,
+      "${tempDir}\\$tempDirName\\",
+    );
 
-    execLines([
-      'rmdir /s /q "${tempDir}\\$tempDirName\\"',
-      'del "$zipPath"',
-    ]);
+    Fsx.copy(
+      zipPath,
+      zipGoogleDrivePath,
+    );
+
+    Fsx.delete("${tempDir}\\$tempDirName\\");
+    Fsx.delete(zipPath);
   }
 }
