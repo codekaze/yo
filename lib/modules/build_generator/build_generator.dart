@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:uuid/uuid.dart';
+import 'package:yox/data/config.dart';
 
 import '../../shared/helper/exec/exec.dart';
 
@@ -21,7 +22,7 @@ class BuildGenerator {
       String gdriveFileName =
           target.toString().split(r"\").last.replaceAll("_", "-") +
               "-release.apk";
-      String gdrivePath = "G:\\My Drive\\Codecanyon\\${gdriveFileName}";
+      String gdrivePath = "${mainGdrivePath}\\${gdriveFileName}";
 
       List commands = [
         'cd "$target"'.trim(),
@@ -47,11 +48,7 @@ class BuildGenerator {
     for (var i = 0; i < registeredProjects.length; i++) {
       var target = registeredProjects[i];
 
-      String source =
-          target + r"\build\app\outputs\flutter-apk\app-release.apk";
       String dirName = target.toString().split(r"\").last.replaceAll("_", "-");
-      String gdriveFileName = dirName + "-release.apk";
-      String gdrivePath = "G:\\My Drive\\Codecanyon\\${gdriveFileName}";
 
       var uuid = Uuid();
       var tempDirName = uuid.v4();
@@ -59,7 +56,7 @@ class BuildGenerator {
       List commands = [
         'cd "$target"'.trim(),
         'flutter clean',
-        "xcopy /S /I /Q /Y /F \"$target\" c:\\yo_temp\\$tempDirName\\source\\",
+        "xcopy /S /I /Q /Y /F \"$target\" ${tempDir}\\$tempDirName\\source\\",
       ];
 
       var query = commands.join(" && ").trim();
@@ -67,30 +64,26 @@ class BuildGenerator {
         query,
       ], workingDirectory: target);
 
-      var f = File("c:\\yo_temp\\$tempDirName\\documentation.html");
+      var f = File("${tempDir}\\$tempDirName\\documentation.html");
       f.writeAsStringSync(
           '<script>window.location.href = "http://18.219.180.235/docs/";</script>');
 
-      var programFilesDir = execr(
-        "echo %ProgramFiles%",
-      ).toString().trim();
-
       String zipFileName = "${dirName}_source_and_docs.zip";
-      String zipPath = "c:\\yo_temp\\$zipFileName";
-      String zipGoogleDrivePath = "G:\\My Drive\\Codecanyon\\$dirName\\";
+      String zipPath = "${tempDir}\\$zipFileName";
+      String zipGoogleDrivePath = "${mainGdrivePath}\\$dirName\\";
 
       execLines([
         //WIN RAR
-        // '"$programFilesDir\\WinRAR\\Rar.exe" a -ep1 -idq -r -y "$zipPath" "c:\\yo_temp\\$tempDirName\\*"',
+        // '"$programFilesDir\\WinRAR\\Rar.exe" a -ep1 -idq -r -y "$zipPath" "${tempDir}\\$tempDirName\\*"',
         // 7Zip
         [
-          '7z a "$zipPath" "c:\\yo_temp\\$tempDirName\\*"',
+          '7z a "$zipPath" "${tempDir}\\$tempDirName\\*"',
           'xcopy /S /I /Q /Y /F "$zipPath" "$zipGoogleDrivePath"',
         ].join(" && "),
       ]);
 
       // execLines([
-      //   'rmdir /s /q "c:\\yo_temp\\$tempDirName\\"',
+      //   'rmdir /s /q "${tempDir}\\$tempDirName\\"',
       //   'del "$zipPath"',
       // ]);
     }

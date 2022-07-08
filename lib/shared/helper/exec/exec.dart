@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:process_run/shell.dart';
 import 'package:uuid/uuid.dart';
+import 'package:yox/data/config.dart';
 
 dynamic execr(
   String cmd, {
@@ -49,8 +50,8 @@ dynamic execLines(
   print(commandList);
   writeSeparator();
 
-  var tempFilePath = "c:/yo_temp/${Uuid().v4()}.bat";
-  Directory("c:/yo_temp/").createSync();
+  var tempFilePath = "${tempDir}${Uuid().v4()}.bat";
+  Directory(tempDir).createSync();
   File ff = File(tempFilePath);
   ff.writeAsStringSync(commandList.join("\n"));
   var res = execr(
