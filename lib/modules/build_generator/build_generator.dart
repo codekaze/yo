@@ -7,10 +7,10 @@ import '../../shared/helper/exec/exec.dart';
 
 class BuildGenerator {
   static List registeredProjects = [
-    r"C:\Users\Thinkpad\Documents\FLUTTER_PROJECT\generated\barber_app",
-    r"C:\Users\Thinkpad\Documents\FLUTTER_PROJECT\generated\car_rental_app",
-    r"C:\Users\Thinkpad\Documents\FLUTTER_PROJECT\generated\doctor_appointment_app",
-    r"C:\Users\Thinkpad\Documents\FLUTTER_PROJECT\codekaze_pos"
+    "${generatedProjectPath}\\generated\\barber_app",
+    "${generatedProjectPath}\\generated\\car_rental_app",
+    "${generatedProjectPath}\\generated\\doctor_appointment_app",
+    "${generatedProjectPath}\\codekaze_pos"
   ];
 
   static run() {
