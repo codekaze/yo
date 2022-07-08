@@ -50,8 +50,8 @@ dynamic execLines(
   print(commandList);
   writeSeparator();
 
-  var tempFilePath = "${tempDir}${Uuid().v4()}.bat";
-  Directory(tempDir).createSync();
+  var tempFilePath = "${tempDir}\\${Uuid().v4()}.bat";
+  Directory("${tempDir}\\").createSync();
   File ff = File(tempFilePath);
   ff.writeAsStringSync(commandList.join("\n"));
   var res = execr(

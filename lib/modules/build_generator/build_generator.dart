@@ -65,6 +65,9 @@ class BuildGenerator {
       ], workingDirectory: target);
 
       var f = File("${tempDir}\\$tempDirName\\documentation.html");
+      if (f.existsSync() == false) {
+        f.createSync();
+      }
       f.writeAsStringSync(
           '<script>window.location.href = "http://18.219.180.235/docs/";</script>');
 
