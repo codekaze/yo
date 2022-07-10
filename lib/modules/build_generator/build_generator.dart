@@ -10,6 +10,8 @@ import '../../shared/helper/exec/exec.dart';
 class BuildGenerator {
   static run() {
     for (var i = 0; i < registeredProjects.length; i++) {
+      print("Building... ");
+      print("${i}/${registeredProjects.length}");
       var target = registeredProjects[i];
 
       String source =
