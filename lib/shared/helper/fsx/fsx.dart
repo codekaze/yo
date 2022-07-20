@@ -11,6 +11,14 @@ class Fsx {
     );
   }
 
+  static copyFile(source, destination) {
+    execLines(
+      [
+        'copy /Y "$source" "$destination"',
+      ],
+    );
+  }
+
   static archive(source, destination) {
     execLines(
       [

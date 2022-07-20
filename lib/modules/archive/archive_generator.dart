@@ -36,7 +36,7 @@ class ArchiveGenerator {
       );
     }
     f.writeAsStringSync(
-        '<script>window.location.href = "http://18.219.180.235/docs/";</script>');
+        '<script>window.location.href = "${docsUrl}";</script>');
 
     String zipFileName = "${directoryName}_source_and_docs.zip";
     String zipPath = "${tempDir}\\$zipFileName";

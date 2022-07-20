@@ -24,7 +24,7 @@ class BuildGenerator {
       List commands = [
         'cd "$target"'.trim(),
         "flutter build apk --release".trim(),
-        'xcopy "$source" "$gdrivePath"* /Y'.trim(),
+        // 'xcopy "$source" "$gdrivePath"* /Y'.trim(),
       ];
 
       var query = commands.join(" && ").trim();
@@ -38,6 +38,8 @@ class BuildGenerator {
       execLines([
         query,
       ], workingDirectory: target);
+
+      Fsx.copyFile(source, gdrivePath);
     }
   }
 
@@ -72,7 +74,7 @@ class BuildGenerator {
         );
       }
       f.writeAsStringSync(
-          '<script>window.location.href = "http://18.219.180.235/docs/";</script>');
+          '<script>window.location.href = "${docsUrl}";</script>');
 
       String zipFileName = "${dirName}_source_and_docs.zip";
       String zipPath = "${tempDir}\\$zipFileName";
