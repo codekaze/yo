@@ -57,24 +57,26 @@ class BuildGenerator {
         'flutter clean',
       ];
 
-      Fsx.copy(
-        target,
-        "${tempDir}\\$tempDirName\\source\\",
-      );
-
       var query = commands.join(" && ").trim();
       execLines([
         query,
       ], workingDirectory: target);
 
-      var f = File("${tempDir}\\$tempDirName\\documentation.html");
-      if (f.existsSync() == false) {
-        f.createSync(
-          recursive: true,
-        );
-      }
-      f.writeAsStringSync(
-          '<script>window.location.href = "${docsUrl}";</script>');
+      Fsx.copy(
+        target,
+        "${tempDir}\\$tempDirName\\source\\",
+      );
+
+      Fsx.createFile(
+        target: "${tempDir}\\$tempDirName\\documentation.html",
+        content: '<script>window.location.href = "${docsUrl}";</script>',
+      );
+
+      Fsx.createFile(
+        target: "${tempDir}\\$tempDirName\\backend-example.html",
+        content:
+            '<script>window.location.href = "https://github.com/codekaze/codecanyon_backend";</script>',
+      );
 
       String zipFileName = "${dirName}_source_and_docs.zip";
       String zipPath = "${tempDir}\\$zipFileName";
