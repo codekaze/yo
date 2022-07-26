@@ -1,6 +1,7 @@
 import "dart:io";
 
 import 'package:yox/shared/helper/exec/exec.dart';
+import 'package:yox/shared/helper/fsx/fsx.dart';
 import 'package:yox/shared/helper/name_parser/name_parser.dart';
 import 'package:yox/shared/helper/template/template.dart';
 
@@ -36,7 +37,7 @@ class SpitGenerator {
       var copyTheme =
           "xcopy \"${dir.path}\\lib\\module\\$dirName\\theme.dart\" \"$target\\lib\\module\\$dirName\\theme.dart\" /F";
       var themeVariableName = NameParser.getVariableName(dirName) + "Theme";
-      var moduleTitleName = NameParser.getTitle(dirName);
+      var appName = NameParser.getTitle(dirName);
       print("CopyTheme: $copyTheme");
 
       execLines([
@@ -120,12 +121,19 @@ class SpitGenerator {
 
       mainCppFile.writeAsStringSync(cppContents.join("\r\n"));
 
+      var androidPackageName =
+          "com.codekaze.${appName.toLowerCase().replaceAll(" ", "_")}";
+
+      Fsx.updateProjectNameAndPackage(
+        target: target,
+        appName: appName,
+        packageName: androidPackageName,
+      );
+
       //format code
       execLines([
         "cd \"$target\"",
         "flutter pub global run yox core",
-        "rename --bundleId com.codekaze.$dirName",
-        "rename --appname \"$moduleTitleName\"",
         "flutter clean",
         "flutter pub get",
       ], workingDirectory: target);

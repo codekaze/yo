@@ -1,5 +1,7 @@
 import "dart:io";
+import 'package:yox/data/config.dart';
 import 'package:yox/shared/helper/exec/exec.dart';
+import 'package:yox/shared/helper/fsx/fsx.dart';
 import 'package:yox/shared/helper/name_parser/name_parser.dart';
 
 extension StringExtension on String {
@@ -19,11 +21,11 @@ extension StringExtension on String {
 class BookingCoreSpitGenerator {
   static run() async {
     List<Map> logs = [];
-    Directory currentDir = Directory.current;
-    print("Current DIR: ${currentDir.path}");
+    Directory bookingApiDir = Directory(BOOKING_API_DIR);
+    print("Current DIR: ${bookingApiDir.path}");
 
     var dirs = [];
-    Directory("${currentDir.path}/lib/config")
+    Directory("${bookingApiDir.path}/lib/config")
         .listSync(
       recursive: false,
     )
@@ -34,23 +36,22 @@ class BookingCoreSpitGenerator {
     });
 
     execLines([
-      'rmdir /s /q "${currentDir.path}/build"',
+      'rmdir /s /q "${bookingApiDir.path}/build"',
     ]);
 
     for (var i = 0; i < dirs.length; i++) {
       var appName = dirs[i].toString().fileName;
-      var target = '${currentDir.path}/../generated/$appName';
-
+      var target = '${bookingApiDir.path}/../generated/$appName';
       execLines([
         'rmdir /s /q "$target"',
-        'xcopy "${currentDir.path}" "$target" /E/H/C/I',
+        'xcopy "${bookingApiDir.path}" "$target" /E/H/C/I',
         'rmdir /s /q "$target/lib/config/"',
         'rmdir /s /q "$target/lib/config_backup/"',
         'rmdir /s /q "$target/.git"',
       ]);
 
       var copyAssetCommand =
-          'xcopy "${currentDir.path}\\lib\\config\\$appName\\assets" "$target\\assets" /E/H/C/I/Y';
+          'xcopy "${bookingApiDir.path}\\lib\\config\\$appName\\assets" "$target\\assets" /E/H/C/I/Y';
 
       execLines([
         copyAssetCommand,
@@ -61,7 +62,8 @@ class BookingCoreSpitGenerator {
           "${NameParser.getFileName(appName)}_dummy_api.dart";
       print(dummyApiFileName);
 
-      var f = File('${currentDir.path}/lib/config/$appName/$dummyApiFileName');
+      var f =
+          File('${bookingApiDir.path}/lib/config/$appName/$dummyApiFileName');
       var content = f.readAsStringSync();
 
       content = content.replaceAll(dummyApiClassName, "MainDummyApi");
@@ -72,15 +74,13 @@ class BookingCoreSpitGenerator {
 
       //Change Icon
       var appAssetDir =
-          '${currentDir.path}/lib/config/$appName/assets/'.fixFormat;
-      var projectAssetDir = '${currentDir.path}/assets/'.fixFormat;
+          '${bookingApiDir.path}/lib/config/$appName/assets/'.fixFormat;
+      var projectAssetDir = '${bookingApiDir.path}/assets/'.fixFormat;
 
       execLines([
         'xcopy "$appAssetDir" "$projectAssetDir" /E/H/C/I/Y/S',
       ]);
 
-      var androidPackageName = "com.codekaze.$appName";
-      print("Rename to $androidPackageName");
       //---------------------
       //!TODO:
       var fileList = Directory("$target")
@@ -106,6 +106,10 @@ class BookingCoreSpitGenerator {
       }
       //---------------------
       var androidApplicationName = NameParser.getTitle(appName);
+      var androidPackageName =
+          "com.codekaze.${appName.toLowerCase().replaceAll(" ", "_")}";
+      print("Rename to $androidPackageName");
+      print(androidApplicationName);
 
       logs.add({
         "copy_asset_command": copyAssetCommand,
@@ -114,9 +118,14 @@ class BookingCoreSpitGenerator {
         "working_directory": target,
       });
 
+      Fsx.updateProjectNameAndPackage(
+        target: target,
+        appName: androidApplicationName,
+        packageName: androidPackageName,
+      );
+
       List commands = [
         "cd \"$target\"",
-        "flutter pub global run rename --bundleId $androidPackageName --appname \"${androidApplicationName}\"",
         "flutter clean",
         "flutter pub get",
         "yoxdev clean",

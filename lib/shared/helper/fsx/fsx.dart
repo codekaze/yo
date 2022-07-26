@@ -56,4 +56,25 @@ class Fsx {
     }
     f.writeAsStringSync(content);
   }
+
+  static updateProjectNameAndPackage({
+    String target,
+    String appName,
+    String packageName,
+  }) {
+    var manifest =
+        File("$target\\android\\app\\src\\main\\AndroidManifest.xml");
+    var manifestContent = manifest.readAsStringSync();
+    manifestContent = manifestContent
+        .replaceAll('android:label="booking_api"', 'android:label="$appName"')
+        .replaceAll("com.codekaze.booking_api", packageName);
+    manifest.writeAsStringSync(manifestContent);
+
+    var buildGradle = File("$target\\android\\app\\build.gradle");
+    var buildGradleContent = buildGradle.readAsStringSync();
+    buildGradleContent =
+        buildGradleContent.replaceAll("com.codekaze.booking_api", packageName);
+
+    buildGradle.writeAsStringSync(buildGradleContent);
+  }
 }
