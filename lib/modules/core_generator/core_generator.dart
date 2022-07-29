@@ -49,9 +49,56 @@ class CoreGenerator {
     return 'package:$packageName/$fileName';
   }
 
+  static generateCorePackageFile() {
+    List imports = [];
+    var f = File("./pubspec.yaml");
+    var pubspecContent = f.readAsStringSync();
+    var lines = pubspecContent.split("\n");
+    var read = false;
+
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i].trim();
+
+      //--------------
+      var blocks = [
+        "flutter_lints",
+        "flutter_html",
+        "permission_handler",
+        "latlong2",
+        "geolocator",
+      ];
+      if (read) {
+        if (line == "flutter:") continue;
+        if (line == "sdk: flutter") continue;
+        if (line.contains(".") == false) continue;
+        if (line.contains("#") == true) continue;
+        if (line.contains("#ignore_import")) continue;
+
+        var extraPackageName = line.split(":")[0];
+        if (blocks.contains(extraPackageName)) continue;
+
+        imports
+            .add("export 'package:$extraPackageName/$extraPackageName.dart';");
+      }
+      //--------------
+
+      if (line == "dependencies:") {
+        read = true;
+      } else if (line == "dev_dependencies:" ||
+          line == "dependency_overrides:") {
+        read = false;
+      }
+    }
+
+    var fcp = File("./lib/core_package.dart");
+    fcp.writeAsStringSync(imports.join("\n"));
+  }
+
   static generateCoreFile(List importStringList) {
     // var sorting = ["module", "api", "shared"];
+    generateCorePackageFile();
     var content = "";
+    content += "export './core_package.dart';\n";
 
     importStringList.forEach((importString) {
       content += "export '$importString';\n";
