@@ -1,6 +1,7 @@
 import "dart:io";
 import 'package:yox/core.dart';
 import 'package:yox/modules/archive/archive_generator.dart';
+import 'package:yox/modules/asset_to_network/asset_to_network.dart';
 import 'package:yox/modules/build_generator/build_generator.dart';
 import 'package:yox/modules/core_generator/core_generator.dart';
 import 'package:yox/modules/deploy/deploy.dart';
@@ -139,6 +140,11 @@ void main(List<String> args) async {
     print("This command will remove unused imports");
     print("--------------");
     WifeClean.run();
+  } else if (command == "asset_to_network") {
+    print("--------------");
+    print("This command will upload all network assets to imgbb?");
+    print("--------------");
+    AssetToNetwork.run();
   }
   //Under Development Feature
   else if (command == "core") {
